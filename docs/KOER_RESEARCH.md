@@ -4,144 +4,208 @@
 
 Identify the exact diagnostic request sequence that a Ford diagnostic tool uses to invoke **PCM Key On Engine Running On Demand Self Test (KOER)** on this specific 2013 Focus PCM.
 
-Do not hard-code a guessed service/routine ID.
+Do not hard-code or transmit a guessed service/routine ID.
 
-## Evidence already established
+## Verified vehicle-specific facts
 
-### Vehicle-specific PCM identification
-
-Verified live against the vehicle over HS-CAN using physical PCM addressing:
+Live verification against the vehicle over HS-CAN established:
 
 ```text
 PCM calibration:  HFCR3PS.H32
 ECU name:         ECM.-EngineControl
 PCM request ID:   0x7E0 confirmed
 PCM response ID:  0x7E8 confirmed
+Protocol:         UDS / ISO-TP on CAN confirmed
 ```
 
-The VIN was intentionally **not committed** because this repository is public.
+The VIN is intentionally **not committed** because this repository is public.
 
-`identify_pcm.py` successfully retrieved Mode 09 VIN, Calibration ID and ECU Name through `0x7E0 -> 0x7E8`. That means the earlier one-off timeout from `pcm_obd_probe.py` is no longer evidence of an addressing problem. The same physical pair is proven to work. Likely explanations for the earlier miss are ignition/module state, timing, or a transient transport issue.
+`identify_pcm.py` successfully retrieved standard Mode 09 VIN, Calibration ID and ECU Name through `0x7E0 -> 0x7E8`. A prior one-off Mode 01 PID 00 timeout is not evidence of incorrect addressing.
 
-### FORScan behavior
+### Confirmed UDS DiagnosticSessionControl semantics
+
+The reviewed session probe was run against the live PCM with ignition ON. It sent only the UDS default-session request and stopped on the positive response:
+
+```text
+TX 0x7E0: 10 01
+RX 0x7E8: 50 01 00 32 01 F4
+```
+
+This confirms UDS-style `DiagnosticSessionControl` semantics for calibration `HFCR3PS.H32`.
+
+Decoded timing values:
+
+```text
+50 01       positive response to defaultSession
+00 32       P2ServerMax = 0x0032 = 50 ms
+01 F4       P2*ServerMax = 0x01F4 * 10 ms = 5000 ms
+```
+
+The fallback legacy/KWP-style `10 81` request was **not** sent.
+
+No KOER, PATS, SecurityAccess, configuration write, ECU reset, As-Built change, download/upload, firmware programming, or key operation has been performed.
+
+## FORScan behavior
 
 FORScan documents the user-level sequence as:
 
 `Tests -> PCM Key On Engine Running On Demand Self Test`
 
-and uses that completed test as the first step in the no-admin-key MyKey workaround.
+and uses completion of that test as the first step in the no-admin-key MyKey workaround.
 
 Source: https://forum.forscan.org/viewtopic.php?t=11739
 
-### Ford service description
+Ford service descriptions also establish KOER On-Demand Self-Test as a normal PCM diagnostic operation performed with the engine running and vehicle stopped. This establishes the existence of the operation, not its raw UDS request for this PCM.
 
-Ford service documentation describes KOER On-Demand Self-Test as a functional PCM test performed on demand with the engine running and the vehicle stopped. Faults found during the test are returned to a diagnostic tool as DTCs.
+## Ford routine clue: 0x0202
 
-This establishes that KOER is a normal PCM diagnostic function, but it does **not** by itself establish the raw request bytes for this PCM.
+There is substantial Ford-family evidence associating identifier `0x0202` with **On-Demand Self-Test**, but none located yet is specific enough to authorize transmitting it to PCM calibration `HFCR3PS.H32`.
 
-### Strong Ford routine clue, local routine ID 0x0202
+### Supporting evidence
 
-Open-source Ford diagnostic material provides a much stronger lead than a generic UDS guess:
+- `ghostdev137/ford-pscm-re` contains extracted Ford diagnostic-definition material where `routine_0202` is named **On-Demand Self-Test**.
+- `jakka351/FG-Falcon` implements an older Ford diagnostic form of On-Demand Self-Test using legacy local-routine services. This is useful for Ford naming/history but is **not the protocol used by this PCM**.
+- Later Ford diagnostic-definition material publicly mirrored online also describes UDS RoutineIdentifier `0x0202` as On-Demand Self-Test for other Ford modules and requires an extended diagnostic session.
+- Jaguar/Land Rover service information also refers to `On Demand Self Test (0x0202)`, including for PCM-related diagnostics. This is supporting Ford-family/JLR convention evidence only, not 2013 Focus proof.
 
-- `ghostdev137/ford-pscm-re` contains multiple extracted Ford diagnostic-definition files where `routine_0202` is explicitly named **On-Demand Self-Test**.
-- `jakka351/FG-Falcon`, in `Diagnostic/routineControl_OnDemandSelfTest.cs`, implements Ford On-Demand Self-Test by starting a diagnostic session and sending `31 02 00`. It expects positive response service `71`, then polls results with `33 02 00` until receiving positive response service `73`.
-- The same FG-Falcon repository includes captured/self-test examples showing `31 02 00 -> 71 02 00`, followed by `33 02 00`, with `7F 33 78` used while results are still pending.
+### Important historical ambiguity
 
-Relevant repositories/files:
+Older Ford Global Diagnostic Specification material also uses `0x0202` as a **PID** meaning the number of trouble codes set due to a diagnostic test. That historical PID must not be conflated with a modern UDS `RoutineIdentifier` merely because the numeric value is the same.
 
-- https://github.com/ghostdev137/ford-pscm-re
-- https://github.com/jakka351/FG-Falcon/blob/master/Diagnostic/routineControl_OnDemandSelfTest.cs
-- https://github.com/jakka351/FG-Falcon/blob/master/resources/IC_DiagSig_SelfTest.txt
+## Legacy candidate retired for this PCM
 
-This is **strong evidence that Ford uses local routine ID 0x0202 for On-Demand Self-Test on at least some Ford modules/protocol generations**.
-
-It is **not yet proof** that calibration `HFCR3PS.H32` wants the same diagnostic-session setup or exact `31/33` service sequence. Do not transmit the candidate simply because it is documented here.
-
-Current candidate:
+Before UDS was confirmed, research tracked this legacy Ford/KWP-style candidate:
 
 ```text
-candidate start:       31 02 00
-candidate positive:    71 02 00 ...
-candidate result poll: 33 02 00
-candidate pending:     7F 33 78
-candidate result:      73 02 00 ...
+31 02 00
+33 02 00
 ```
 
-### Historical Ford diagnostic material
+Those bytes are now **retired as executable candidates for this PCM**.
 
-`twhitehead/notes-obd2elm327edb` documents Ford KOEO/KOER scan-tool commands for 1990s EEC-V vehicles. It is useful historical context only. Those payloads and headers are not evidence for this 2013 Focus.
+For a UDS ECU, service `0x31` is `RoutineControl` and uses a subfunction followed by a two-byte RoutineIdentifier:
 
-Source: https://github.com/twhitehead/notes-obd2elm327edb
+```text
+31 01 RR RR ...   startRoutine
+31 02 RR RR ...   stopRoutine
+31 03 RR RR ...   requestRoutineResults
 
-### Third-party Ford diagnostics
+71 xx RR RR ...   positive response
+```
 
-FCOM exposes a PCM KOEO/KOER test on Ford vehicles, further confirming that the operation is available through the diagnostic link:
+Therefore `31 02 00` is not a complete UDS KOER start request, and legacy service `0x33` result semantics must not be used here.
 
-https://www.obdtester.com/fcom-video-tutorials
+If future Focus-specific evidence proves that UDS RoutineIdentifier `0x0202` is KOER for `HFCR3PS.H32`, the **shape** of a UDS transaction would be approximately:
+
+```text
+CANDIDATE SHAPE ONLY - DO NOT TRANSMIT
+
+31 01 02 02 ...   startRoutine(0x0202)
+71 01 02 02 ...   positive start response
+
+31 03 02 02 ...   requestRoutineResults(0x0202)
+71 03 02 02 ...   positive result response
+```
+
+This is protocol structure, **not evidence that RID `0x0202` is correct for this PCM**.
 
 ## What remains unknown
 
-The important remaining question is **diagnostic-session semantics for PCM calibration `HFCR3PS.H32`**.
+The protocol family is no longer unknown. The remaining blockers are narrower:
 
-The candidate Ford implementations enter a diagnostic session before invoking routine `0x0202`, but different Ford generations/modules use different session subfunctions. We still need Focus/PCM-specific evidence for the required session before executing KOER.
+1. Which diagnostic session is required for PCM KOER, default `0x01`, extended `0x03`, or another supported session?
+2. Does PCM calibration/family `HFCR3PS.H32` map On-Demand Self-Test to UDS RoutineIdentifier `0x0202`?
+3. What exact request data, if any, follows the RID?
+4. Does the routine return immediately, use NRC `0x78` response-pending, or require explicit `requestRoutineResults` polling?
+5. Is `TesterPresent` required while the test runs?
+6. What exact entry criteria apply: engine running, RPM range, coolant temperature, transmission state, brake state, vehicle speed, accessory loads, etc.?
+7. What marks successful completion versus a routine-completed response carrying on-demand DTCs?
 
-Do not probe PATS, SecurityAccess, module programming, ECU reset, As-Built writes, download/upload services, or key functions while resolving this.
+Do not answer these by brute-force routine enumeration against the live vehicle.
 
-## Best paths to the exact KOER command
+## Best next paths
 
-### Path A, match this calibration/PCM family to diagnostic definitions
+### Path A, identify the PCM more precisely with read-only UDS data
 
-Search Ford diagnostic definitions and open-source implementations for calibration `HFCR3PS.H32`, its strategy family, or the matching 2013 Focus gasoline PCM. Determine:
+Use `ReadDataByIdentifier (0x22)` only for documented/standard identification DIDs that can help map this PCM to Ford diagnostic-definition data. Useful areas to research include manufacturer software/hardware identifiers in the `F18x/F19x` ranges.
 
-1. required diagnostic session;
-2. whether local routine `0x0202` is PCM On-Demand Self-Test;
-3. whether start/result services are `0x31` / `0x33`;
-4. expected positive and response-pending behavior;
-5. KOER entry criteria.
+Requirements:
 
-### Path B, capture a known-good diagnostic session
+- read-only requests only;
+- log exact TX/RX bytes;
+- tolerate unsupported-DID NRCs;
+- no SecurityAccess;
+- no writes;
+- no ECUReset;
+- no session change unless separately reviewed;
+- do not commit VIN or serial-number values unnecessarily.
 
-Highest confidence if available. Capture the CAN traffic while FORScan, IDS or FCOM performs only the PCM KOER test on a matching platform. Diff:
+The goal is to obtain a Ford software number, hardware number, strategy/application identifier, or engine/system identifier that is more searchable than `HFCR3PS.H32`.
 
-1. idle diagnostic session;
-2. KOER start;
-3. KOER in progress;
-4. KOER completion/result retrieval.
+### Path B, obtain a same-generation Focus KOER trace
 
-Look specifically at `0x7E0 -> 0x7E8` and check for the candidate session setup, `31 02 00`, `33 02 00`, `71`, `73`, and `7F 33 78`.
+Highest-confidence evidence would be a CAN trace from FORScan, IDS, FCOM, or another known-good tool performing only PCM KOER on a matching 2012-2014 Focus gasoline powertrain.
 
-### Path C, Focus-specific Ford diagnostic documentation
+Reconstruct UDS payloads exchanged on:
 
-Find documentation tied to the 2013 Focus gasoline PCM / calibration family and record the exact service, local routine identifier, required session and expected responses.
+```text
+0x7E0 -> 0x7E8
+```
+
+Look for:
+
+- diagnostic session transition, especially `10 03` / `50 03` if used;
+- `31 01 <RID>` startRoutine;
+- `71 01 <RID>` positive response;
+- NRC `7F 31 78` if response-pending is used;
+- `31 03 <RID>` result retrieval if used;
+- tester-present traffic `3E` if used.
+
+### Path C, find matching Ford ODX/MDX/IDS diagnostic definitions
+
+Search by identifiers obtained from Path A, not only by `HFCR3PS.H32`. Prefer exact matching PCM family/model-year definitions over generic Ford module examples.
+
+Useful artifacts may include:
+
+- Ford ODX/MDX diagnostic definitions;
+- IDS/FJDS/FDRS diagnostic metadata;
+- Ford engineering/software part numbers;
+- strategy/application IDs;
+- matching ECU software/hardware numbers;
+- same-generation Focus diagnostic traces.
 
 ## Validation checklist before `koer.py`
 
-- [x] PCM calibration/strategy identified: `HFCR3PS.H32`
+- [x] PCM calibration identified: `HFCR3PS.H32`
 - [x] ECU identified: `ECM.-EngineControl`
 - [x] `0x7E0/0x7E8` physical addressing verified live
-- [ ] confirm PCM protocol/session semantics for this calibration family
-- [ ] verify local routine ID `0x0202` is PCM On-Demand Self-Test for this PCM
-- [ ] required diagnostic session identified
-- [ ] KOER request bytes supported by Focus-specific evidence
-- [ ] any tester-present/keepalive behavior understood
+- [x] UDS DiagnosticSessionControl semantics verified live
+- [x] default session `10 01 -> 50 01` verified
+- [x] P2/P2* timing decoded as 50 ms / 5000 ms
+- [x] legacy `31 02 00` / `33 02 00` candidate retired for this PCM
+- [ ] additional read-only PCM software/hardware identifiers collected
+- [ ] exact required KOER diagnostic session identified
+- [ ] UDS KOER RoutineIdentifier identified with Focus/PCM-specific evidence
+- [ ] request data following RID documented, if any
 - [ ] positive response format documented
-- [ ] response-pending handling documented
-- [ ] completion/result query documented
-- [ ] engine-running and vehicle-stopped preconditions documented
-- [ ] request reproduced first in dry-run output
-- [ ] no PATS/security/write/flash service involved
+- [ ] response-pending behavior documented
+- [ ] completion/result retrieval behavior documented
+- [ ] tester-present requirement understood
+- [ ] engine-running and other entry criteria documented
+- [ ] proposed KOER request reproduced first in dry-run output
+- [ ] no PATS/security/write/reset/flash service involved
 
 ## Candidate implementation shape
 
-Once verified, `scripts/koer.py` should keep protocol constants explicit. If Focus-specific evidence confirms the current candidate, that may look approximately like:
+Do not add executable KOER bytes until the RID/session are evidence-backed for this PCM.
+
+Once verified, `scripts/koer.py` should keep protocol constants and session transitions explicit rather than hiding them behind a large abstraction. A future implementation may resemble:
 
 ```python
 PCM_TX_ID = 0x7E0
 PCM_RX_ID = 0x7E8
-KOER_START = bytes.fromhex("31 02 00")
-KOER_RESULTS = bytes.fromhex("33 02 00")
+KOER_SESSION = ...      # VERIFIED before use
+KOER_ROUTINE_ID = ...   # VERIFIED before use
 ```
 
-Those constants are **research candidates, not authorization to transmit them yet**.
-
-If a diagnostic session is required, show each request separately in logs. Do not hide the traffic behind a large third-party abstraction.
+It must default to dry-run and require `--execute` for any live routine invocation.
