@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: ford-focus-canbus
+Version: 0.1.0
+Summary: Small macOS SLCAN/ISO-TP tooling for a 2013 Ford Focus
+Requires-Python: >=3.11
+Requires-Dist: pyserial<4,>=3.5

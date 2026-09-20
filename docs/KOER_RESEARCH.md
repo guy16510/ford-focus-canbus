@@ -18,6 +18,62 @@ PCM response ID:  0x7E8 confirmed
 Protocol:         UDS / ISO-TP on CAN confirmed
 ```
 
+The first guarded live KOER attempt additionally established:
+
+```text
+TX 0x7E0: 10 03
+RX 0x7E8: 50 03 00 32 01 F4
+
+TX 0x7E0: 31 01 02 02
+RX 0x7E8: 7F 31 22
+```
+
+Thus extended session is accepted and the request for RID `0x0202` reached the
+PCM, but the PCM returned `conditionsNotCorrect`. This does not authorize an
+alternate RID, alternate session, or routine enumeration.
+
+## Read-only KOER preflight
+
+Immediately before a retry, `scripts/koer.py --execute` now queries the SAE
+J1979 Mode 01 supported-PID bitmaps and reads supported values for engine RPM
+(`0C`), vehicle speed (`0D`), coolant temperature (`05`), engine run time
+(`1F`), control-module voltage (`42`), throttle position (`11`), and calculated
+engine load (`04`). RPM zero, nonzero vehicle speed, an unavailable required
+safety value, or module voltage outside Ford's documented broad 11-18 V
+diagnostic operating range blocks the routine attempt.
+
+Ford service material describes gasoline KOER as an engine-running,
+vehicle-stopped test at normal operating temperature. It does not establish an
+exact temperature or minimum-run-time threshold for this PCM calibration, so
+the preflight reports those measurements and labels the Focus-specific limits
+UNKNOWN rather than guessing.
+
+The preflight also sends one read-only `0x22` request for each of the following
+curated DIDs. `F186` is the ISO 14229 Active Diagnostic Session DID. The other
+names are Ford-family diagnostic-definition candidates supplied for this
+investigation; their record layouts remain unverified for `HFCR3PS.H32`, so
+the tool reports raw bytes and does not infer values:
+
+| DID | Candidate meaning |
+| --- | --- |
+| `F186` | Active Diagnostic Session (standardized) |
+| `D100` | Active Diagnostic Session (Ford candidate) |
+| `1126` | Time Since Start |
+| `1505` | Vehicle Speed - High Resolution |
+| `038F` | Engine Coolant Temperature - Corrected |
+| `054F` | Battery / terminal voltage |
+| `062E` | Engine-speed / tachometer-related value |
+
+Unsupported/read-condition responses, including `7F 22 31`, are recorded and
+the preflight continues. No broad DID scan is performed. No sufficiently
+specific public definition was found for a PCM KOER inhibit-reason DID, gear,
+brake, or accelerator-state DID on this calibration, so those fields remain
+UNKNOWN unless a future evidence-backed decoder is added.
+
+If the exact KOER request again returns `7F 31 22`, the complete snapshot is
+written under ignored `logs/` as JSON and compared with the newest prior failed
+snapshot. These logs are intentionally excluded from version control.
+
 The VIN is intentionally **not committed** because this repository is public.
 
 `identify_pcm.py` successfully retrieved standard Mode 09 VIN, Calibration ID and ECU Name through `0x7E0 -> 0x7E8`. A prior one-off Mode 01 PID 00 timeout is not evidence of incorrect addressing.
