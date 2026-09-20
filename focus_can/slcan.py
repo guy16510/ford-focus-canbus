@@ -152,9 +152,10 @@ class Slcan:
         response = self.command(BITRATE_COMMANDS[bitrate])
         self._raise_on_bell("setting bitrate", response)
 
-        if silent:
-            response = self.command("M1")
-            self._raise_on_bell("enabling silent mode", response)
+        mode_command = "M1" if silent else "M0"
+        mode_description = "enabling silent mode" if silent else "enabling normal mode"
+        response = self.command(mode_command)
+        self._raise_on_bell(mode_description, response)
 
         response = self.command("O", wait=0.1)
         self._raise_on_bell("opening CAN channel", response)
