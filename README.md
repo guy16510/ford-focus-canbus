@@ -24,9 +24,9 @@ The immediate goal is to reproduce the documented FORScan PCM KOER workflow that
 ## Quick start
 
 ```bash
-./scripts/setup.sh
+bash scripts/setup.sh
 source .venv/bin/activate
-./scripts/detect_canable.sh
+bash scripts/detect_canable.sh
 python scripts/probe_canable.py
 ```
 
@@ -38,10 +38,17 @@ python scripts/listen_hscan.py
 
 That listener opens the adapter at 500 kbit/s in silent/listen-only mode.
 
-When passive traffic is confirmed, test a normal emissions/PCM request:
+When passive traffic is confirmed, test a normal emissions/PCM request and identify the PCM:
 
 ```bash
 python scripts/pcm_obd_probe.py
+python scripts/identify_pcm.py
+```
+
+Run the built-in transport tests at any time with:
+
+```bash
+python -m unittest discover -s tests -v
 ```
 
 ## MyKey workflow we are targeting
@@ -66,4 +73,4 @@ Do not flash firmware just because the board is present. The Mac already enumera
 
 This repo intentionally starts passive. Do not transmit arbitrary CAN frames, write configuration, erase keys, invoke PATS, or flash vehicle modules. The only active traffic currently included is ordinary OBD-II PCM interrogation and an explicit guarded diagnostic request tool.
 
-See [AGENTS.md](AGENTS.md) for the implementation plan and [docs/WIRING.md](docs/WIRING.md) for connector orientation and wiring.
+See [AGENTS.md](AGENTS.md) for the implementation plan, [docs/WIRING.md](docs/WIRING.md) for connector orientation and wiring, and [docs/KOER_RESEARCH.md](docs/KOER_RESEARCH.md) for the one remaining protocol-research step.
