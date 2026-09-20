@@ -9,7 +9,7 @@ PYTHON="${PYTHON:-python3}"
 "$PYTHON" -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+python -m pip install -e .
 
 mkdir -p logs
 
