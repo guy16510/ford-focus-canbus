@@ -55,13 +55,20 @@ It should:
 ## Current scripts
 
 ```bash
-./scripts/setup.sh               # create venv/install dependencies
-./scripts/detect_canable.sh      # find likely /dev/cu.* port
-python scripts/probe_canable.py  # close channel + query SLCAN firmware version
-python scripts/listen_hscan.py   # 500 kbps silent capture
-python scripts/capture_hscan.py  # timestamped capture to logs/
-python scripts/pcm_obd_probe.py  # harmless PCM OBD-II PID probe
-python scripts/diag_request.py   # guarded generic ISO-TP request runner
+bash scripts/setup.sh              # create venv/install project
+bash scripts/detect_canable.sh     # find likely /dev/cu.* port
+python scripts/probe_canable.py    # close channel + query SLCAN firmware version
+python scripts/listen_hscan.py     # 500 kbps silent capture
+python scripts/capture_hscan.py    # timestamped capture to logs/
+python scripts/pcm_obd_probe.py    # harmless PCM OBD-II PID probe
+python scripts/identify_pcm.py     # VIN/calibration/ECU identification via Mode 09
+python scripts/diag_request.py     # guarded generic ISO-TP request runner
+```
+
+Transport tests:
+
+```bash
+python -m unittest discover -s tests -v
 ```
 
 ## Immediate agent tasks
@@ -71,9 +78,9 @@ python scripts/diag_request.py   # guarded generic ISO-TP request runner
 Run:
 
 ```bash
-./scripts/setup.sh
+bash scripts/setup.sh
 source .venv/bin/activate
-./scripts/detect_canable.sh
+bash scripts/detect_canable.sh
 python scripts/probe_canable.py
 ```
 
@@ -87,15 +94,16 @@ python scripts/listen_hscan.py
 
 Expected: standard 11-bit CAN frames at 500 kbps. Do not proceed if the bus is silent or errors are returned.
 
-### Task 2, confirm PCM addressing
+### Task 2, confirm PCM addressing and identify the exact PCM
 
 Run:
 
 ```bash
 python scripts/pcm_obd_probe.py
+python scripts/identify_pcm.py
 ```
 
-The script sends a standard OBD-II Mode 01 PID 00 request to physical PCM address `0x7E0` and expects a response at `0x7E8`. Confirm that before adding enhanced diagnostics.
+The first script sends standard OBD-II Mode 01 PID 00 to physical PCM address `0x7E0` and expects a response at `0x7E8`. Confirm that before adding enhanced diagnostics. Record the calibration/strategy information from `identify_pcm.py` in `docs/KOER_RESEARCH.md`. Do not commit the VIN while this repository is public.
 
 ### Task 3, identify the exact KOER request
 
@@ -156,9 +164,10 @@ Do not automate ignition, immobilizer, or cluster configuration.
 
 ```bash
 git pull
-./scripts/setup.sh
+bash scripts/setup.sh
 source .venv/bin/activate
-./scripts/detect_canable.sh
+bash scripts/detect_canable.sh
+python -m unittest discover -s tests -v
 python scripts/probe_canable.py
 python scripts/listen_hscan.py
 ```
@@ -167,6 +176,7 @@ Then, only after passive traffic is verified:
 
 ```bash
 python scripts/pcm_obd_probe.py
+python scripts/identify_pcm.py
 ```
 
 If that succeeds, focus all further work on identifying and validating the exact **PCM KOER on-demand self-test request sequence**. Do not expand scope into PATS, key programming, or module firmware.
