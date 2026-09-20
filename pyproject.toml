@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ford-focus-canbus"
+version = "0.1.0"
+description = "Small macOS SLCAN/ISO-TP tooling for a 2013 Ford Focus"
+requires-python = ">=3.11"
+dependencies = [
+  "pyserial>=3.5,<4",
+]
+
+[tool.setuptools.packages.find]
+include = ["focus_can*"]
