@@ -5,7 +5,7 @@ from focus_can.slcan import CanFrame, encode_frame, parse_frame
 
 class SlcanCodecTests(unittest.TestCase):
     def test_parse_standard_data_frame(self):
-        frame = parse_frame(b"t7E884100BE1FA813\r")
+        frame = parse_frame(b"t7E864100BE1FA813\r")
         self.assertIsNotNone(frame)
         assert frame is not None
         self.assertEqual(frame.arbitration_id, 0x7E8)
@@ -19,6 +19,9 @@ class SlcanCodecTests(unittest.TestCase):
     def test_non_frame_response_is_ignored(self):
         self.assertIsNone(parse_frame(b"V1234\r"))
         self.assertIsNone(parse_frame(b"\r"))
+
+    def test_truncated_data_frame_is_rejected(self):
+        self.assertIsNone(parse_frame(b"t7E884100BE1FA813\r"))
 
 
 if __name__ == "__main__":

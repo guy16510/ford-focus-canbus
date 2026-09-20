@@ -142,6 +142,34 @@ Requirements:
 
 The goal is to obtain a Ford software number, hardware number, strategy/application identifier, or engine/system identifier that is more searchable than `HFCR3PS.H32`.
 
+#### Read-only DID plan
+
+The initial script uses only standardized ISO 14229 identification DIDs whose
+values are intended to identify ECU software, application data, supplier, or
+manufacturer part information. The request service is `0x22` and the script
+does not change diagnostic session. VIN (`F190`) and ECU serial-number values
+are intentionally excluded from this public repository workflow.
+
+| DID | Expected meaning | Exact request |
+| --- | --- | --- |
+| `F180` | Boot software identification | `22 F1 80` |
+| `F181` | Application software identification | `22 F1 81` |
+| `F182` | Application data identification | `22 F1 82` |
+| `F187` | Vehicle manufacturer spare part number | `22 F1 87` |
+| `F188` | Vehicle manufacturer ECU software number | `22 F1 88` |
+| `F18A` | System supplier identifier | `22 F1 8A` |
+| `F18B` | ECU manufacturing date | `22 F1 8B` |
+
+These names and identifier assignments are from the ISO 14229 standardized DID
+table as reproduced by the `iso14229-1` reference implementation and the
+`py-uds` UDS documentation. The values and record layouts remain ECU-specific,
+so an unsupported-DID negative response is expected to be handled without
+retrying or guessing additional identifiers.
+
+The script is currently dry-run by default. No live results have yet been
+collected for `HFCR3PS.H32`; therefore no additional PCM identifiers are
+claimed here.
+
 ### Path B, obtain a same-generation Focus KOER trace
 
 Highest-confidence evidence would be a CAN trace from FORScan, IDS, FCOM, or another known-good tool performing only PCM KOER on a matching 2012-2014 Focus gasoline powertrain.
