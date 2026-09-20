@@ -1,0 +1,134 @@
+name: KOER research extractor
+
+on:
+  push:
+    branches:
+      - koer-research-extract
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout working repo
+        uses: actions/checkout@v4
+
+      - name: Clone Ford diagnostic-definition research repo
+        run: |
+          git clone --depth 1 https://github.com/ghostdev137/ford-pscm-re.git /tmp/ford-pscm-re
+
+      - name: Extract every KOER routine definition and exact XML schema
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          import json, re
+
+          root = Path('/tmp/ford-pscm-re')
+          phrase = 'Key-On Engine Running Self Test'
+          print('=== FILES CONTAINING EXACT KOER NAME ===')
+          hits=[]
+          for p in root.rglob('*'):
+              if not p.is_file():
+                  continue
+              try:
+                  txt=p.read_text(errors='ignore')
+              except Exception:
+                  continue
+              if phrase in txt:
+                  hits.append(p)
+                  print(p.relative_to(root))
+          print('total exact-name files:', len(hits))
+
+          print('\n=== XML ROUTINE_0282 DEFINITIONS ===')
+          xml_hits=0
+          for p in root.rglob('*.xml'):
+              try:
+                  tree=ET.parse(p)
+              except Exception:
+                  continue
+              for r in tree.findall('.//ROUTINE'):
+                  rid=(r.get('ID') or '').lower()
+                  name=(r.findtext('NAME') or '').strip()
+                  num=(r.findtext('NUMBER') or '').strip()
+                  if rid=='routine_0282' or name==phrase or num=='642':
+                      xml_hits += 1
+                      print('\nFILE:', p.relative_to(root))
+                      print('ATTRS:', dict(r.attrib))
+                      print('NAME:', name)
+                      print('NUMBER:', num)
+                      print('MAX_ROUTINE_RUN_TIME:', r.findtext('MAX_ROUTINE_RUN_TIME'))
+                      print('RESTART_WHILE_RUNNING:', r.findtext('RESTART_WHILE_RUNNING'))
+                      print('SECURITY_LEVEL_REFS:', r.get('SECURITY_LEVEL_REFS'))
+                      print('SESSION_REFS:', r.get('SESSION_REFS'))
+                      xml=ET.tostring(r, encoding='unicode')
+                      print('ROUTINE_XML_BEGIN')
+                      print(xml)
+                      print('ROUTINE_XML_END')
+          print('\nxml routine_0282 hits:', xml_hits)
+
+          print('\n=== XML SERVICE 0x31 DEFINITIONS IN FILES WITH ROUTINE_0282 ===')
+          seen=set()
+          for p in root.rglob('*.xml'):
+              try:
+                  tree=ET.parse(p)
+              except Exception:
+                  continue
+              koer=False
+              for r in tree.findall('.//ROUTINE'):
+                  if (r.get('ID') or '').lower()=='routine_0282' or (r.findtext('NAME') or '').strip()==phrase:
+                      koer=True
+                      break
+              if not koer:
+                  continue
+              if p in seen: continue
+              seen.add(p)
+              print('\nFILE:', p.relative_to(root))
+              for s in tree.findall('.//SERVICE'):
+                  if (s.findtext('NUMBER') or '').strip()=='49' or (s.get('ID') or '')=='service_31':
+                      print(ET.tostring(s, encoding='unicode'))
+
+          print('\n=== G2059415 SUMMARY ===')
+          j=root/'firmware/_fdrs_archive/extracted/G2059415.mdx.json'
+          if j.exists():
+              data=json.loads(j.read_text())
+              print('ecu_name:', data.get('ecu_name'))
+              print('routines:', data.get('routines'))
+
+          print('\n=== G2059415 STRING CONTEXT AROUND ROUTINE_0282 ===')
+          s=root/'firmware/_fdrs_archive/extracted/strings/G2059415.mdx.txt'
+          if s.exists():
+              lines=s.read_text(errors='replace').splitlines()
+              idx=[i for i,x in enumerate(lines) if 'routine_0282' in x or phrase in x]
+              if idx:
+                  lo=max(0,min(idx)-8); hi=min(len(lines),max(idx)+12)
+                  for line in lines[lo:hi]: print(line)
+
+          print('\n=== RAW G2059415 FILE METADATA / HEADER ===')
+          raw=root/'firmware/_fdrs_archive/raw/G2059415.mdx'
+          if raw.exists():
+              b=raw.read_bytes()
+              print('bytes:', len(b))
+              print('first128hex:', b[:128].hex())
+              needle=b'routine_0282'
+              poss=[]; st=0
+              while True:
+                  x=b.find(needle,st)
+                  if x<0: break
+                  poss.append(x); st=x+1
+              print('routine_0282 raw offsets:', poss[:20], 'count=', len(poss))
+              for x in poss[:4]:
+                  lo=max(0,x-256); hi=min(len(b),x+512)
+                  chunk=b[lo:hi]
+                  print('RAW_CONTEXT offset',x,'hex',chunk.hex())
+          PY
+
+      - name: Search public source tree for raw diagnostic request examples
+        shell: bash
+        run: |
+          echo '=== request byte patterns / KOER mentions ==='
+          grep -RInaE '31[[:space:]]+01[[:space:]]+02[[:space:]]+82|31010282|31 03 02 82|31030282|0282|Key-On Engine Running Self Test' /tmp/ford-pscm-re --exclude='*.mdx' | head -n 500 || true
