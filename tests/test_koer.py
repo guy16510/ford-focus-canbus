@@ -112,7 +112,10 @@ class KoerPreflightTests(unittest.TestCase):
         decision = evaluate_preflight(snapshot)
 
         self.assertTrue(decision.can_attempt)
-        self.assertIn("exact Ford coolant threshold is UNKNOWN", decision.notes)
+        self.assertIn(
+            "exact Ford Focus KOER coolant threshold is UNKNOWN; Ford requires normal operating temperature",
+            decision.notes,
+        )
 
     def test_snapshot_diff_identifies_changed_values(self):
         previous = PreflightSnapshot(readings={
