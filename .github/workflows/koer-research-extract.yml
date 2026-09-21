@@ -22,13 +22,14 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/ghostdev137/ford-pscm-re.git /tmp/ford-pscm-re
 
-      - name: Extract concise KOER evidence
+      - name: Extract deep KOER evidence
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import xml.etree.ElementTree as ET
           import json
+          import re
 
           root = Path('/tmp/ford-pscm-re')
           phrase = 'Key-On Engine Running Self Test'
@@ -38,9 +39,9 @@ jobs:
               'g2059415': {},
               'string_evidence': {},
               'raw_request_examples': [],
+              'deep_binary': {},
           }
 
-          # Exact-name occurrences across the public research archive.
           for p in root.rglob('*'):
               if not p.is_file():
                   continue
@@ -51,8 +52,6 @@ jobs:
               if phrase in txt:
                   out['exact_name_files'].append(str(p.relative_to(root)))
 
-          # Plain XML definitions are the best evidence because they expose the
-          # complete routine object, including sessions and parameter schemas.
           for p in root.rglob('*.xml'):
               try:
                   tree = ET.parse(p)
@@ -83,7 +82,6 @@ jobs:
                           })
                   out['xml_0282'].append(item)
 
-          # Known old PCM definition containing both generic ODS and KOER.
           j = root/'firmware/_fdrs_archive/extracted/G2059415.mdx.json'
           if j.exists():
               data = json.loads(j.read_text())
@@ -92,11 +90,10 @@ jobs:
                   'routines': data.get('routines'),
               }
 
-          # String-table evidence about request/response option records.
           s = root/'firmware/_fdrs_archive/extracted/strings/G2059415.mdx.txt'
           if s.exists():
               lines = s.read_text(errors='replace').splitlines()
-              koer_lines = [x for x in lines if 'routine_0282' in x or x == phrase]
+              koer_lines = [x for x in lines if 'routine_0282' in x or phrase in x]
               out['string_evidence'] = {
                   'all_0282_related_strings': koer_lines,
                   'has_start_req_string': any('routine_0282' in x and 'start_req' in x for x in lines),
@@ -107,7 +104,6 @@ jobs:
                   'has_stop_resp_string': any('routine_0282' in x and 'stop_resp' in x for x in lines),
               }
 
-          # Search text files for literal raw requests/results involving 0282.
           patterns = ('31 01 02 82', '31010282', '31 03 02 82', '31030282', '31 02 02 82', '31020282')
           for p in root.rglob('*'):
               if not p.is_file() or p.suffix.lower() in ('.mdx', '.bin', '.zip'):
@@ -123,6 +119,101 @@ jobs:
                           'file': str(p.relative_to(root)), 'line': i, 'text': line[:1000]
                       })
 
+          # Deep inspection of the proprietary Ford ETIS MDX binary.  We do not
+          # attempt to mutate or execute anything; this is offline metadata RE.
+          def walk_strings(data):
+              records = []
+              i = 0
+              n = len(data)
+              while i < n - 3:
+                  b = data[i]
+                  if b == 0xFC:
+                      ln = data[i+1]
+                      end = i + 2 + ln
+                      if 1 <= ln <= 250 and end <= n:
+                          raw = data[i+2:end]
+                          if all(32 <= c < 127 for c in raw):
+                              records.append((i, end, raw.decode('ascii', 'replace')))
+                              i = end
+                              continue
+                  elif b == 0xFD and i + 3 < n:
+                      ln = (data[i+1] << 8) | data[i+2]
+                      end = i + 3 + ln
+                      if 1 <= ln <= 60000 and end <= n:
+                          raw = data[i+3:end]
+                          if raw and sum(1 for c in raw if 32 <= c < 127) / len(raw) > 0.8:
+                              records.append((i, end, raw.decode('ascii', 'replace')))
+                              i = end
+                              continue
+                  i += 1
+              return records
+
+          raw_path = root/'firmware/_fdrs_archive/raw/G2059415.mdx'
+          if raw_path.exists():
+              data = raw_path.read_bytes()
+              recs = walk_strings(data)
+              deep = {
+                  'size': len(data),
+                  'record_count': len(recs),
+                  'occurrences': {},
+                  'routine_tail_comparison': {},
+                  'class_names_near_0282': [],
+              }
+
+              targets = [
+                  'routine_0202', 'On-Demand Self-Test',
+                  'routine_0282', 'Key-On Engine Running Self Test',
+                  'routine_0301', 'Activate Secondary Boot-loader',
+                  'routine_FF00', 'Flash Erase',
+              ]
+              for target in targets:
+                  hits = [idx for idx, (_, _, text) in enumerate(recs) if text == target]
+                  windows = []
+                  for idx in hits[:6]:
+                      lo = max(0, idx - 18)
+                      hi = min(len(recs), idx + 19)
+                      seq = []
+                      prev_end = recs[lo][1]
+                      for j2 in range(lo, hi):
+                          off, end, text = recs[j2]
+                          gap = data[prev_end:off]
+                          seq.append({
+                              'index': j2,
+                              'offset': off,
+                              'string': text,
+                              'gap_before_hex': gap[:96].hex(),
+                              'gap_before_len': len(gap),
+                          })
+                          prev_end = end
+                      windows.append(seq)
+                  deep['occurrences'][target] = windows
+
+              # Compare raw bytes immediately following routine name records.
+              # If access/session metadata are encoded as references/numeric
+              # fields, this exposes whether 0202 and 0282 share the same tail.
+              for rid in ('routine_0202', 'routine_0282', 'routine_0301', 'routine_FF00'):
+                  tails = []
+                  for off, end, text in recs:
+                      if text == rid:
+                          tails.append({
+                              'offset': off,
+                              'next_256_hex': data[end:end+256].hex(),
+                          })
+                  deep['routine_tail_comparison'][rid] = tails[:8]
+
+              # Class/type strings in a 32 KiB byte window around each 0282 name.
+              for off, end, text in recs:
+                  if text == 'routine_0282':
+                      lo = max(0, off - 16384)
+                      hi = min(len(data), end + 16384)
+                      nearby = []
+                      for roff, rend, rtext in recs:
+                          if lo <= roff < hi and ('com.ford.etis.runtime.mdx' in rtext or 'session_' in rtext or rtext in ('defaultSession','extendedDiagnosticSession','programmingSession')):
+                              nearby.append({'offset': roff, 'string': rtext})
+                      deep['class_names_near_0282'].append(nearby)
+
+              out['deep_binary'] = deep
+
           Path('koer_research_results.json').write_text(json.dumps(out, indent=2, sort_keys=True))
           PY
 
@@ -134,6 +225,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No result changes'
           else
-            git commit -m 'Persist KOER extraction results [skip ci]'
+            git commit -m 'Persist deeper KOER MDX extraction [skip ci]'
             git push origin HEAD:koer-research-extract
           fi
