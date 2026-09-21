@@ -47,24 +47,49 @@ def decode_dtc_pair(pair: bytes) -> str | None:
 
 
 def parse_dtc_response(response: bytes, positive_service: int) -> tuple[list[str], bytes]:
-    """Return decoded DTCs and any malformed trailing bytes.
+    """Decode an ISO 15765-4 (CAN) J1979 DTC response.
 
-    The application payload begins with the positive service byte (43/47/4A)
-    followed by zero or more two-byte DTC values. 00 00 entries are padding/no-DTC.
+    On CAN, Mode 03/07/0A responses contain an extra count byte immediately
+    after the positive response service byte. For example:
+
+        43 01 01 31
+        ^^ ^^ ^^^^^
+        |  |    +--- one two-byte DTC => P0131
+        |  +-------- one DTC follows
+        +----------- positive response to Mode 03
+
+    This differs from older non-CAN J1979 examples where the bytes after 43/47/4A
+    are interpreted directly as two-byte DTC pairs.
+
+    Returns the decoded DTC list plus any unexpected bytes after the count-declared
+    DTC records. Zero padding after the declared records is ignored.
     """
     if not response or response[0] != positive_service:
         raise ValueError(
             f"expected positive service 0x{positive_service:02X}, got {fmt(response) or '<empty>'}"
         )
+    if len(response) < 2:
+        raise ValueError("CAN DTC response is missing the DTC-count byte")
 
-    payload = response[1:]
-    complete_len = len(payload) - (len(payload) % 2)
+    count = response[1]
+    required = 2 + count * 2
+    if len(response) < required:
+        raise ValueError(
+            f"CAN DTC response declares {count} DTC(s) but only {len(response) - 2} DTC data byte(s) follow"
+        )
+
     dtcs: list[str] = []
-    for offset in range(0, complete_len, 2):
+    payload = response[2:required]
+    for offset in range(0, len(payload), 2):
         decoded = decode_dtc_pair(payload[offset : offset + 2])
         if decoded is not None:
             dtcs.append(decoded)
-    return dtcs, payload[complete_len:]
+
+    trailing = response[required:]
+    # Some ECUs/passthrough paths can retain all-zero padding; it is not another DTC.
+    if trailing and all(byte == 0 for byte in trailing):
+        trailing = b""
+    return dtcs, trailing
 
 
 def parse_mil_status(response: bytes) -> MilStatus:
@@ -133,7 +158,7 @@ def read_codes(client: IsoTpClient) -> dict[str, list[str]]:
         else:
             print(f"{label}: none reported")
         if trailing:
-            print(f"WARNING: undecoded trailing response byte(s): {fmt(trailing)}")
+            print(f"WARNING: unexpected trailing response byte(s): {fmt(trailing)}")
 
     print("\nNo DTCs were erased. Mode 04 / Clear DTCs is intentionally not implemented.")
     return results
