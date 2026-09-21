@@ -7,7 +7,6 @@ import time
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Callable
 
 from focus_can.isotp import IsoTpClient
 from focus_can.slcan import Slcan, find_port
@@ -17,24 +16,44 @@ PCM_RX_ID = 0x7E8
 KOER_RID = 0x0282
 KOER_START = bytes.fromhex("31 01 02 82")
 KOER_RESULTS = bytes.fromhex("31 03 02 82")
+KOER_START_POSITIVE = bytes.fromhex("71 01 02 82")
+KOER_RESULTS_POSITIVE = bytes.fromhex("71 03 02 82")
 
-# Explicit allowlist only. No arbitrary service/RID scanning.
+# Ford FDRS diagnostic definitions identify 0x0282 as "Key-On Engine Running
+# Self Test" and model the routine as a Type-2 UDS RoutineControl routine.
+# Generic Ford Type-2 on-demand self-tests require extended session, so that is
+# the evidence-backed primary candidate. The live PCM accepts both 10 03 and
+# 10 01; default is retained only as a bounded fallback if the ECU explicitly
+# says the routine/subfunction is unavailable in extended session.
 SESSION_CANDIDATES = (
-    ("default", bytes.fromhex("10 01"), bytes.fromhex("50 01")),
     ("extended", bytes.fromhex("10 03"), bytes.fromhex("50 03")),
+    ("default", bytes.fromhex("10 01"), bytes.fromhex("50 01")),
 )
 
+# ISO 14229 / Ford NRC names. 0x89-0x93 are especially important here because
+# they expose environmental entry-condition failures instead of requiring us to
+# guess why KOER was rejected.
 NRC = {
     0x10: "generalReject",
     0x11: "serviceNotSupported",
     0x12: "subFunctionNotSupported",
     0x13: "incorrectMessageLengthOrInvalidFormat",
+    0x14: "responseTooLong",
     0x21: "busyRepeatRequest",
     0x22: "conditionsNotCorrect",
     0x24: "requestSequenceError",
+    0x25: "noResponseFromSubnetComponent",
+    0x26: "failurePreventsExecutionOfRequestedAction",
     0x31: "requestOutOfRange",
     0x33: "securityAccessDenied",
-    0x78: "responsePending",
+    0x35: "invalidKey",
+    0x36: "exceedNumberOfAttempts",
+    0x37: "requiredTimeDelayNotExpired",
+    0x70: "uploadDownloadNotAccepted",
+    0x71: "transferDataSuspended",
+    0x72: "generalProgrammingFailure",
+    0x73: "wrongBlockSequenceCounter",
+    0x78: "requestCorrectlyReceivedResponsePending",
     0x7E: "subFunctionNotSupportedInActiveSession",
     0x7F: "serviceNotSupportedInActiveSession",
     0x81: "rpmTooHigh",
@@ -45,14 +64,44 @@ NRC = {
     0x86: "temperatureTooHigh",
     0x87: "temperatureTooLow",
     0x88: "vehicleSpeedTooHigh",
-    0x8B: "transmissionRangeNotInNeutral",
-    0x8F: "shifterLeverNotInPark",
+    0x89: "vehicleSpeedTooLow",
+    0x8A: "throttlePedalTooHigh",
+    0x8B: "throttlePedalTooLow",
+    0x8C: "transmissionRangeNotInNeutral",
+    0x8D: "transmissionRangeNotInGear",
+    0x8F: "brakeSwitchesNotClosed",
+    0x90: "shifterLeverNotInPark",
+    0x91: "torqueConverterClutchLocked",
     0x92: "voltageTooHigh",
     0x93: "voltageTooLow",
 }
 
-PERMANENT_NRCS = {0x11, 0x12, 0x13, 0x31, 0x33, 0x7E, 0x7F}
-CONDITION_NRCS = {0x22, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x8B, 0x8F, 0x92, 0x93}
+SESSION_MISMATCH_NRCS = {0x7E, 0x7F}
+CONDITION_NRCS = {
+    0x22,
+    0x81,
+    0x82,
+    0x83,
+    0x84,
+    0x85,
+    0x86,
+    0x87,
+    0x88,
+    0x89,
+    0x8A,
+    0x8B,
+    0x8C,
+    0x8D,
+    0x8F,
+    0x90,
+    0x91,
+    0x92,
+    0x93,
+}
+# These say the request itself is unsupported/invalid or would require a path
+# this tool intentionally will not take. Changing sessions does not justify
+# probing around them.
+TERMINAL_START_NRCS = {0x11, 0x12, 0x13, 0x24, 0x26, 0x31, 0x33, 0x35, 0x36, 0x37}
 
 # Standard OBD-II Mode 01 values used only as a read-only preflight.
 OBD_PIDS = {
@@ -63,15 +112,31 @@ OBD_PIDS = {
     0x42: "Voltage",
 }
 
+TYPE2_STATUS = {
+    0x0: "completed",
+    0x1: "aborted",
+    0x2: "active",
+}
+
 
 @dataclass
 class CandidateState:
     name: str
     session_request: bytes
     session_positive: bytes
-    permanent_failure: bool = False
+    session_mismatch: bool = False
     last_response: bytes | None = None
     attempts: int = 0
+
+
+@dataclass(frozen=True)
+class Type2RoutineInfo:
+    raw: int
+    routine_type: int
+    status_code: int
+    status: str
+    on_demand_dtc: bytes | None
+    extra: bytes
 
 
 class RunLog:
@@ -107,6 +172,61 @@ def nrc_of(response: bytes) -> int | None:
 
 def positive(response: bytes, prefix: bytes) -> bool:
     return len(response) >= len(prefix) and response[: len(prefix)] == prefix
+
+
+def describe_nrc(response: bytes) -> str:
+    code = nrc_of(response)
+    if code is None:
+        return f"unexpected response {fmt(response)}"
+    return f"NRC 0x{code:02X} {NRC.get(code, 'unknown')}"
+
+
+def decode_type2_routine_info(data: bytes, *, expect_dtc: bool = False) -> Type2RoutineInfo:
+    """Decode Ford Type-2 RoutineInfo.
+
+    Ford FDRS metadata defines one RoutineInfo byte for Type-2 self tests:
+      bits 7..4: RoutineType = 0x2
+      bits 3..0: 0 completed, 1 aborted, 2 active
+
+    For 0x0282 requestRoutineResults, Ford metadata additionally defines three
+    bytes of On-Demand DTC data. Completion is not accepted if that required
+    result record is absent.
+    """
+    if not data:
+        raise ValueError("missing Ford RoutineInfo byte")
+
+    raw = data[0]
+    routine_type = raw >> 4
+    status_code = raw & 0x0F
+    if routine_type != 0x2:
+        raise ValueError(
+            f"unexpected RoutineType 0x{routine_type:X} in RoutineInfo 0x{raw:02X}; expected Type 2"
+        )
+    if status_code not in TYPE2_STATUS:
+        raise ValueError(
+            f"unknown Type-2 RoutineStatus 0x{status_code:X} in RoutineInfo 0x{raw:02X}"
+        )
+
+    dtc: bytes | None = None
+    extra = b""
+    if len(data) >= 4:
+        dtc = data[1:4]
+        extra = data[4:]
+    elif expect_dtc and status_code == 0x0:
+        raise ValueError(
+            "completed KOER result is missing Ford's 3-byte On-Demand DTC result record"
+        )
+    else:
+        extra = data[1:]
+
+    return Type2RoutineInfo(
+        raw=raw,
+        routine_type=routine_type,
+        status_code=status_code,
+        status=TYPE2_STATUS[status_code],
+        on_demand_dtc=dtc,
+        extra=extra,
+    )
 
 
 def decode_obd(pid: int, response: bytes) -> str | None:
@@ -149,14 +269,24 @@ def receive_final(
     log: RunLog,
     *,
     overall_timeout: float = 30.0,
+    p2_star_seconds: float = 6.0,
 ) -> bytes:
-    """Receive one application response, honoring UDS NRC 0x78 without resending."""
-    deadline = time.monotonic() + overall_timeout
-    while time.monotonic() < deadline:
+    """Receive the final UDS response, honoring NRC 0x78 without resending.
+
+    The live PCM advertised P2*=5000 ms. The client allows a 1-second transport/host
+    margin; each 0x78 refreshes that bounded wait while an overall cap prevents an infinite wait.
+    """
+    overall_deadline = time.monotonic() + overall_timeout
+    pending_deadline: float | None = None
+
+    while time.monotonic() < overall_deadline:
         try:
             response = client.receive_payload()
         except TimeoutError:
+            if pending_deadline is not None and time.monotonic() >= pending_deadline:
+                raise TimeoutError("P2* expired waiting for final ECU response after NRC 0x78")
             continue
+
         log.write(f"RX 0x{PCM_RX_ID:X}: {fmt(response)}")
         if (
             len(response) >= 3
@@ -164,9 +294,13 @@ def receive_final(
             and response[1] == request_service
             and response[2] == 0x78
         ):
-            log.write("  NRC 0x78 responsePending, waiting for final response")
+            pending_deadline = min(overall_deadline, time.monotonic() + p2_star_seconds)
+            log.write(
+                f"  NRC 0x78 responsePending; waiting up to {p2_star_seconds:.1f}s P2* for next response"
+            )
             continue
         return response
+
     raise TimeoutError("Timed out waiting for final ECU response")
 
 
@@ -212,9 +346,7 @@ def enter_session(client: IsoTpClient, candidate: CandidateState, log: RunLog) -
         label=f"enter {candidate.name} diagnostic session",
         timeout=10.0,
     )
-    if positive(response, candidate.session_positive):
-        return True, response
-    return False, response
+    return positive(response, candidate.session_positive), response
 
 
 def read_preflight(client: IsoTpClient, log: RunLog) -> dict[int, float | None]:
@@ -232,9 +364,9 @@ def read_preflight(client: IsoTpClient, log: RunLog) -> dict[int, float | None]:
         value = numeric_obd(pid, response)
         values[pid] = value
         if rendered is None:
-            nrc = nrc_of(response)
-            if nrc is not None:
-                log.write(f"{name:9}: UNKNOWN, NRC 0x{nrc:02X} {NRC.get(nrc, 'unknown')}")
+            code = nrc_of(response)
+            if code is not None:
+                log.write(f"{name:9}: UNKNOWN, {describe_nrc(response)}")
             else:
                 log.write(f"{name:9}: UNKNOWN ({fmt(response)})")
         else:
@@ -243,9 +375,9 @@ def read_preflight(client: IsoTpClient, log: RunLog) -> dict[int, float | None]:
     rpm = values.get(0x0C)
     speed = values.get(0x0D)
     if rpm is not None and rpm <= 0:
-        raise RuntimeError("Engine is not running. Start it normally before KOER scan.")
+        raise RuntimeError("Engine is not running. Start it normally before KOER.")
     if speed is not None and speed != 0:
-        raise RuntimeError("Vehicle speed is not zero. Stop the vehicle before KOER scan.")
+        raise RuntimeError("Vehicle speed is not zero. Stop the vehicle before KOER.")
     if rpm is None:
         log.write("WARNING: RPM unavailable, engine-running state cannot be confirmed from OBD.")
     if speed is None:
@@ -253,86 +385,96 @@ def read_preflight(client: IsoTpClient, log: RunLog) -> dict[int, float | None]:
     return values
 
 
-def describe_nrc(response: bytes) -> str:
-    code = nrc_of(response)
-    if code is None:
-        return f"unexpected response {fmt(response)}"
-    return f"NRC 0x{code:02X} {NRC.get(code, 'unknown')}"
+def log_type2_info(log: RunLog, info: Type2RoutineInfo, *, context: str) -> None:
+    log.write(
+        f"{context}: RoutineInfo=0x{info.raw:02X} "
+        f"(Type={info.routine_type}, status={info.status})"
+    )
+    if info.on_demand_dtc is not None:
+        raw = fmt(info.on_demand_dtc)
+        if info.on_demand_dtc == b"\x00\x00\x00":
+            log.write(f"{context}: On-Demand DTC raw={raw} (zero value)")
+        else:
+            log.write(f"{context}: On-Demand DTC raw={raw} (left undecoded)")
+    if info.extra:
+        log.write(f"{context}: unexpected extra response bytes={fmt(info.extra)}")
 
 
 def try_start_candidate(
     client: IsoTpClient,
     candidate: CandidateState,
     log: RunLog,
-) -> str:
-    """Return accepted, transient, or permanent."""
+) -> tuple[str, Type2RoutineInfo | None]:
+    """Try one evidence-backed KOER candidate.
+
+    Returns one of: accepted, completed, aborted, condition, wrong-session,
+    terminal. No alternate RID or service is ever generated here.
+    """
     candidate.attempts += 1
     log.write(f"\n=== CANDIDATE: {candidate.name} session / RID 0x{KOER_RID:04X} ===")
 
     ok, session_response = enter_session(client, candidate, log)
     if not ok:
         candidate.last_response = session_response
-        code = nrc_of(session_response)
         log.write(f"Session rejected: {describe_nrc(session_response)}")
-        if code in PERMANENT_NRCS:
-            candidate.permanent_failure = True
-            return "permanent"
-        return "transient"
+        return "terminal", None
 
     response = exchange_busy_retry(
         client,
         KOER_START,
         log,
         label="start Ford Key-On Engine Running Self Test RID 0x0282",
-        timeout=30.0,
+        timeout=45.0,
     )
     candidate.last_response = response
 
-    if positive(response, bytes.fromhex("71 01 02 82")):
-        log.write("\n**************************************************")
-        log.write("KOER START ACCEPTED")
-        log.write("LEAVE THE ENGINE RUNNING")
-        log.write("DO NOT WRAP THE KEY YET")
-        log.write("**************************************************")
-        return "accepted"
+    if positive(response, KOER_START_POSITIVE):
+        try:
+            info = decode_type2_routine_info(response[4:])
+        except ValueError as error:
+            log.write(f"Positive KOER start had invalid Ford Type-2 data: {error}")
+            return "terminal", None
+
+        log_type2_info(log, info, context="KOER start")
+        if info.status == "active":
+            log.write("\n**************************************************")
+            log.write("KOER START ACCEPTED - ROUTINE IS ACTIVE")
+            log.write("LEAVE THE ENGINE RUNNING")
+            log.write("DO NOT WRAP THE KEY YET")
+            log.write("**************************************************")
+            return "accepted", info
+        if info.status == "completed":
+            log.write("KOER start response already reports completed; requesting results for confirmation.")
+            return "completed", info
+        if info.status == "aborted":
+            log.write("KOER start response reports aborted. No foil procedure will start.")
+            return "aborted", info
+        return "terminal", info
 
     code = nrc_of(response)
     log.write(f"KOER start rejected: {describe_nrc(response)}")
-    if code in PERMANENT_NRCS:
-        candidate.permanent_failure = True
-        return "permanent"
-    if code in CONDITION_NRCS or code == 0x21:
-        return "transient"
+    if code in SESSION_MISMATCH_NRCS:
+        candidate.session_mismatch = True
+        return "wrong-session", None
+    if code in CONDITION_NRCS:
+        return "condition", None
+    if code in TERMINAL_START_NRCS or code is None:
+        return "terminal", None
 
-    # Unknown response: never improvise a new command.
-    candidate.permanent_failure = True
-    return "permanent"
-
-
-def decode_ford_routine_status(result_data: bytes) -> str:
-    """
-    Conservative Ford-family status decoder.
-
-    Ford diagnostic definitions for self-test routines use completed/aborted/active
-    status values. This PCM's exact 0x0282 result record is not yet proven, so only
-    recognize the small status pattern already seen in Ford family metadata.
-    """
-    if not result_data:
-        return "no-status"
-    status = result_data[0] & 0x0F
-    if status == 0:
-        return "completed"
-    if status == 1:
-        return "aborted"
-    if status == 2:
-        return "active"
-    return "unknown"
+    # Never improvise around an NRC we did not explicitly classify.
+    return "terminal", None
 
 
-def poll_koer_results(client: IsoTpClient, log: RunLog, *, max_seconds: float = 90.0) -> bool:
-    log.write("\nKOER accepted. Polling the SAME routine for results.")
+def poll_koer_results(
+    client: IsoTpClient,
+    log: RunLog,
+    *,
+    max_seconds: float = 180.0,
+    poll_interval: float = 1.0,
+) -> bool:
+    """Poll only RID 0x0282 until a valid Ford Type-2 completion is returned."""
+    log.write("\nPolling the SAME KOER routine for Ford Type-2 results.")
     deadline = time.monotonic() + max_seconds
-    no_status_positive = 0
 
     while time.monotonic() < deadline:
         try:
@@ -343,54 +485,49 @@ def poll_koer_results(client: IsoTpClient, log: RunLog, *, max_seconds: float = 
                 label="request KOER RID 0x0282 results",
                 timeout=30.0,
             )
-        except TimeoutError:
-            log.write("Result request timed out; retrying same result request in 1 sec")
-            time.sleep(1.0)
+        except TimeoutError as error:
+            log.write(f"KOER result wait timed out: {error}; retrying same result request")
+            time.sleep(poll_interval)
             continue
 
-        if positive(response, bytes.fromhex("71 03 02 82")):
-            result_data = response[4:]
-            status = decode_ford_routine_status(result_data)
-            log.write(f"KOER result data: {fmt(result_data) if result_data else '<none>'}")
-            log.write(f"KOER interpreted status: {status}")
-
-            if status == "completed":
-                return True
-            if status == "aborted":
-                log.write("KOER reported aborted. Not starting foil procedure.")
+        if positive(response, KOER_RESULTS_POSITIVE):
+            try:
+                info = decode_type2_routine_info(response[4:], expect_dtc=True)
+            except ValueError as error:
+                log.write(f"Invalid/incomplete Ford Type-2 KOER result: {error}")
+                log.write("Stopping rather than guessing that the routine completed.")
                 return False
-            if status == "active":
-                time.sleep(1.0)
-                continue
-            if status == "no-status":
-                # A repeated positive requestRoutineResults with no active/aborted
-                # marker is treated as result availability, but require two identical
-                # positive reads before proceeding.
-                no_status_positive += 1
-                if no_status_positive >= 2:
-                    log.write("Two positive KOER result responses returned with no status bytes.")
-                    log.write("Treating the routine result as available/completed.")
-                    return True
-                time.sleep(1.0)
-                continue
 
-            log.write("Unknown KOER result format; continuing to poll the same routine only.")
-            time.sleep(1.0)
-            continue
+            log_type2_info(log, info, context="KOER result")
+            if info.status == "completed":
+                log.write("Ford Type-2 RoutineInfo explicitly reports COMPLETED (0x20).")
+                return True
+            if info.status == "aborted":
+                log.write("Ford Type-2 RoutineInfo reports ABORTED (0x21).")
+                return False
+            if info.status == "active":
+                time.sleep(poll_interval)
+                continue
 
         code = nrc_of(response)
         if code in (0x21, 0x22) or code in CONDITION_NRCS:
-            log.write(f"Result not ready/condition changed: {describe_nrc(response)}")
-            time.sleep(1.0)
+            log.write(f"KOER result not ready/condition changed: {describe_nrc(response)}")
+            time.sleep(poll_interval)
             continue
+        if code in SESSION_MISMATCH_NRCS:
+            log.write(
+                "Diagnostic session no longer permits KOER result retrieval. "
+                "Stopping; the script will not re-enter a session mid-routine."
+            )
+            return False
         if code == 0x33:
-            log.write("SecurityAccess denied. Stopping. SecurityAccess will NOT be attempted.")
+            log.write("SecurityAccess denied. Stopping; SecurityAccess will NOT be attempted.")
             return False
 
         log.write(f"Unexpected terminal KOER result response: {fmt(response)}")
         return False
 
-    log.write("Timed out waiting for an unambiguous KOER completion result.")
+    log.write("Timed out waiting for an unambiguous Ford Type-2 KOER completion result.")
     return False
 
 
@@ -425,22 +562,27 @@ def foil_wizard(log: RunLog) -> None:
 
 
 def dry_run() -> int:
-    print("Ford Focus interactive KOER scanner - DRY RUN")
+    print("Ford Focus interactive KOER runner - DRY RUN")
     print("\nNO CAN FRAMES WILL BE TRANSMITTED.\n")
-    print("Safe candidate matrix:")
-    print("  1. 10 01 -> expect 50 01 -> 31 01 02 82")
-    print("  2. 10 03 -> expect 50 03 -> 31 01 02 82")
-    print("\nIf start is accepted:")
+    print("Evidence-backed KOER transaction:")
+    print("  primary:  10 03 -> expect 50 03 -> 31 01 02 82")
+    print("  fallback: 10 01 -> expect 50 01 -> 31 01 02 82")
+    print("            fallback is used ONLY after NRC 0x7E/0x7F in extended session")
+    print("\nExpected Ford Type-2 RoutineInfo:")
+    print("  0x22 = Type 2 / active")
+    print("  0x21 = Type 2 / aborted")
+    print("  0x20 = Type 2 / completed")
+    print("\nAfter start is active:")
     print("  poll 31 03 02 82 only")
-    print("  wait through NRC 0x78 without resending the start")
-    print("  retry NRC 0x21 with delay")
-    print("  retry condition NRCs after delay")
+    print("  completed results must contain RoutineInfo 0x20 plus Ford's 3-byte On-Demand DTC field")
+    print("  NRC 0x78 is waited out without resending start")
+    print("  no empty-status/repeated-positive response is ever treated as completion")
     print("\nKnown failed requests are NOT retransmitted:")
     print("  31 01 02 02")
     print("  31 02 00")
     print("  31 82")
     print("\nNever attempted: PATS, SecurityAccess, writes, resets, programming, flashing, arbitrary RIDs.")
-    print("\nThe foil procedure is shown only after positive KOER completion.")
+    print("\nThe foil procedure is never interactive during dry-run.")
     return 0
 
 
@@ -448,28 +590,32 @@ def run(args: argparse.Namespace) -> int:
     if not args.execute:
         return dry_run()
 
-    print("\nFORD FOCUS INTERACTIVE KOER SCANNER")
-    print("===================================")
+    print("\nFORD FOCUS INTERACTIVE KOER RUNNER")
+    print("==================================")
     print("START THE CAR NORMALLY AND LEAVE THE ENGINE RUNNING")
     print("PARK, PARKING BRAKE, VEHICLE STATIONARY")
+    print("A/C AND ACCESSORIES OFF")
     print("DRIVER'S DOOR CLOSED")
     print("NO FOIL YET")
-    print("\nThis scanner only tries the allowlisted Ford KOER RID 0x0282 in")
-    print("default and extended diagnostic sessions. It will not brute-force the ECU.")
-    confirm = input("\nType SCAN to begin: ").strip().upper()
-    if confirm != "SCAN":
+    print("\nThis tool only invokes Ford KOER RID 0x0282. It does not scan arbitrary ECU routines.")
+    confirm = input("\nType KOER to begin: ").strip().upper()
+    if confirm != "KOER":
         print("Cancelled. Nothing transmitted.")
         return 0
 
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log = RunLog(Path("logs") / f"koer_scan_{stamp}.log")
     candidates = [CandidateState(name, request, positive_prefix) for name, request, positive_prefix in SESSION_CANDIDATES]
+    candidate_index = 0
+    abort_retries = 0
 
     try:
         port = args.port or find_port()
         log.write(f"CANable: {port}")
         log.write(f"PCM: 0x{PCM_TX_ID:X} -> 0x{PCM_RX_ID:X}")
-        log.write(f"KOER RID: 0x{KOER_RID:04X}")
+        log.write(f"KOER RID: 0x{KOER_RID:04X} (Ford Key-On Engine Running Self Test)")
+        log.write("Start payload: 31 01 02 82")
+        log.write("Results payload: 31 03 02 82")
 
         with Slcan(port) as bus:
             bus.open_channel(500000, silent=False)
@@ -478,68 +624,93 @@ def run(args: argparse.Namespace) -> int:
             cycle = 0
             while True:
                 cycle += 1
-                log.write(f"\n################ SCAN CYCLE {cycle} ################")
+                log.write(f"\n################ KOER CYCLE {cycle} ################")
 
-                # Return to the known-safe default session before OBD preflight.
-                try:
-                    default_response = exchange_busy_retry(
-                        client,
-                        bytes.fromhex("10 01"),
-                        log,
-                        label="default session before preflight",
-                        timeout=10.0,
+                # J1979 preflight is deliberately performed in default session.
+                default_response = exchange_busy_retry(
+                    client,
+                    bytes.fromhex("10 01"),
+                    log,
+                    label="default session before read-only preflight",
+                    timeout=10.0,
+                )
+                if not positive(default_response, bytes.fromhex("50 01")):
+                    raise RuntimeError(
+                        f"could not establish default session for preflight: {describe_nrc(default_response)}"
                     )
-                    if not positive(default_response, bytes.fromhex("50 01")):
-                        log.write(f"Default session preflight request was not accepted: {describe_nrc(default_response)}")
-                except TimeoutError:
-                    log.write("Default session request timed out; attempting read-only preflight anyway.")
 
                 values = read_preflight(client, log)
                 coolant = values.get(0x05)
+                runtime = values.get(0x1F)
                 if coolant is not None:
-                    log.write(f"NOTE: coolant is {coolant:.0f} C; no unverified KOER threshold is enforced.")
+                    log.write(f"NOTE: coolant={coolant:.0f} C; no unverified KOER threshold is enforced.")
+                if runtime is not None:
+                    log.write(f"NOTE: engine runtime={runtime:.0f} sec; no unverified minimum is enforced.")
 
-                active = [candidate for candidate in candidates if not candidate.permanent_failure]
-                if not active:
-                    log.write("\nAll allowlisted KOER candidates have permanent failures. Stopping safely.")
+                candidate = candidates[candidate_index]
+                outcome, _start_info = try_start_candidate(client, candidate, log)
+
+                if outcome in ("accepted", "completed"):
+                    completed = poll_koer_results(
+                        client,
+                        log,
+                        max_seconds=args.result_timeout,
+                        poll_interval=args.poll_interval,
+                    )
+                    if completed:
+                        log.write("KOER completion positively decoded. Closing CAN channel before manual steps.")
+                        bus.shutdown()
+                        foil_wizard(log)
+                        return 0
+                    log.write("KOER started but completion was not positively established. Stopping without foil.")
+                    return 2
+
+                if outcome == "wrong-session":
+                    if candidate_index + 1 < len(candidates):
+                        candidate_index += 1
+                        next_candidate = candidates[candidate_index]
+                        log.write(
+                            f"Ford returned an active-session NRC. Switching once to explicit fallback: "
+                            f"{next_candidate.name} session."
+                        )
+                        continue
+                    log.write("KOER is unavailable in both allowlisted sessions. Stopping safely.")
                     break
 
-                transient_seen = False
-                for candidate in active:
-                    outcome = try_start_candidate(client, candidate, log)
-                    if outcome == "accepted":
-                        completed = poll_koer_results(client, log, max_seconds=args.result_timeout)
-                        if completed:
-                            # Exit the with-block first so the CAN channel is closed before foil steps.
-                            log.write("KOER completion detected. Closing CAN channel before manual steps.")
-                            bus.shutdown()
-                            foil_wizard(log)
-                            return 0
-                        log.write("KOER started but completion was not positively established. Stopping without foil.")
-                        return 2
-                    if outcome == "transient":
-                        transient_seen = True
-
-                if all(candidate.permanent_failure for candidate in candidates):
-                    log.write("\nBoth allowlisted sessions permanently rejected KOER RID 0x0282.")
+                if outcome == "condition":
+                    log.write(
+                        f"KOER entry condition not satisfied. Keeping the same {candidate.name} session candidate; "
+                        f"refreshing live values and retrying in {args.retry_delay:.1f} sec."
+                    )
+                elif outcome == "aborted":
+                    abort_retries += 1
+                    if abort_retries > args.max_abort_retries:
+                        log.write(
+                            f"KOER aborted more than {args.max_abort_retries} times. "
+                            "Stopping instead of looping actuators indefinitely."
+                        )
+                        break
+                    log.write(
+                        f"KOER reported aborted; retry {abort_retries}/{args.max_abort_retries} "
+                        f"in {args.retry_delay:.1f} sec."
+                    )
+                else:
+                    log.write("KOER request produced a terminal/unknown response. No alternate RID or service will be tried.")
                     break
 
                 if args.max_cycles and cycle >= args.max_cycles:
-                    log.write(f"\nReached max scan cycles ({args.max_cycles}). Stopping safely.")
+                    log.write(f"Reached max KOER cycles ({args.max_cycles}). Stopping safely.")
                     break
-
-                if transient_seen:
-                    log.write(f"\nOnly transient/condition failures remain. Retrying in {args.retry_delay:.1f} sec.")
-                else:
-                    log.write(f"\nRetrying remaining safe candidates in {args.retry_delay:.1f} sec.")
                 time.sleep(args.retry_delay)
 
-        log.write("\nKOER was not entered/completed. DO NOT START THE FOIL PROCEDURE.")
+        log.write("\nKOER was not positively completed. DO NOT START THE FOIL PROCEDURE.")
         log.write("\nSummary:")
         for candidate in candidates:
-            state = "PERMANENT" if candidate.permanent_failure else "RETRYABLE"
             last = "none" if candidate.last_response is None else fmt(candidate.last_response)
-            log.write(f"  {candidate.name}: {state}, attempts={candidate.attempts}, last={last}")
+            log.write(
+                f"  {candidate.name}: attempts={candidate.attempts}, "
+                f"session_mismatch={candidate.session_mismatch}, last={last}"
+            )
         return 1
 
     except KeyboardInterrupt:
@@ -555,17 +726,29 @@ def run(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Interactive, allowlisted Ford Focus PCM KOER scanner")
-    parser.add_argument("--execute", action="store_true", help="actually transmit CAN diagnostic requests")
+    parser = argparse.ArgumentParser(description="Interactive, allowlisted Ford Focus PCM KOER runner")
+    parser.add_argument("--execute", action="store_true", help="actually transmit the evidence-backed KOER request")
     parser.add_argument("--port", help="CANable serial port; defaults to CANABLE_PORT/autodetection")
     parser.add_argument(
         "--max-cycles",
         type=int,
         default=0,
-        help="maximum retry cycles; 0 means continue until success, permanent failure, or Ctrl-C",
+        help="maximum entry-condition retry cycles; 0 means retry until success, terminal response, or Ctrl-C",
     )
-    parser.add_argument("--retry-delay", type=float, default=3.0, help="seconds between retry cycles")
-    parser.add_argument("--result-timeout", type=float, default=90.0, help="seconds to poll KOER result after start")
+    parser.add_argument("--retry-delay", type=float, default=3.0, help="seconds between entry-condition retries")
+    parser.add_argument("--poll-interval", type=float, default=1.0, help="seconds between RID 0x0282 result requests")
+    parser.add_argument(
+        "--result-timeout",
+        type=float,
+        default=180.0,
+        help="seconds to allow KOER to remain active while results are polled",
+    )
+    parser.add_argument(
+        "--max-abort-retries",
+        type=int,
+        default=2,
+        help="maximum retries after an explicit Ford Type-2 aborted status",
+    )
     return parser
 
 
