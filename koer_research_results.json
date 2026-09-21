@@ -1,4 +1,4248 @@
 {
+  "deep_binary": {
+    "class_names_near_0282": [
+      [],
+      []
+    ],
+    "occurrences": {
+      "Activate Secondary Boot-loader": [
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 102,
+            "offset": 8763,
+            "string": "routine_0282"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 103,
+            "offset": 8777,
+            "string": "Key-On Engine Running Self Test"
+          },
+          {
+            "gap_before_hex": "ffff00210000000400000089244b65792d4f6e20456e67696e652052756e6e696e672053656c6620546573748920028204000000b60300008920030100ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000",
+            "gap_before_len": 190,
+            "index": 104,
+            "offset": 9000,
+            "string": "routine_routine_0301_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 105,
+            "offset": 9077,
+            "string": "routine_routine_0301_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 106,
+            "offset": 9122,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 107,
+            "offset": 9147,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0001ffffffff",
+            "gap_before_len": 60,
+            "index": 108,
+            "offset": 9232,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 109,
+            "offset": 9240,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 110,
+            "offset": 9321,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 111,
+            "offset": 9395,
+            "string": "routine_0301_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 112,
+            "offset": 9441,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 113,
+            "offset": 9491,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 114,
+            "offset": 9502,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 115,
+            "offset": 9585,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 116,
+            "offset": 9661,
+            "string": "routine_0301_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 117,
+            "offset": 9707,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 118,
+            "offset": 9731,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 27,
+            "index": 119,
+            "offset": 9771,
+            "string": "routine_0301"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 120,
+            "offset": 9785,
+            "string": "Activate Secondary Boot-loader"
+          },
+          {
+            "gap_before_hex": "ffff00200000000400000089244163746976617465205365636f6e6461727920426f6f742d6c6f616465728920030104000000b20400008920030400ff2a010080040380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ff",
+            "gap_before_len": 197,
+            "index": 121,
+            "offset": 10014,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 122,
+            "offset": 10022,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 123,
+            "offset": 10103,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 124,
+            "offset": 10177,
+            "string": "routine_0304_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 125,
+            "offset": 10223,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 126,
+            "offset": 10273,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 127,
+            "offset": 10284,
+            "string": "routine_0304_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 128,
+            "offset": 10367,
+            "string": "routine_0304_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 129,
+            "offset": 10443,
+            "string": "routine_0304_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 130,
+            "offset": 10489,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 131,
+            "offset": 10513,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2c01000100100100ff6c01000007001001006400fffffaffe8030400bc0000100200be0001ffffffff",
+            "gap_before_len": 46,
+            "index": 132,
+            "offset": 10572,
+            "string": "Valid Application Software is NOT Present"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 133,
+            "offset": 10615,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0002ffffffff",
+            "gap_before_len": 10,
+            "index": 134,
+            "offset": 10700,
+            "string": "Valid Application Software is Present"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 135,
+            "offset": 10739,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 136,
+            "offset": 10827,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 137,
+            "offset": 10908,
+            "string": "routine_0304_param_2_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 138,
+            "offset": 10954,
+            "string": "Application Status"
+          }
+        ],
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13972,
+            "offset": 835378,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13973,
+            "offset": 835444,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13974,
+            "offset": 835501,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 29,
+            "index": 13975,
+            "offset": 835545,
+            "string": "routine_0282"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13976,
+            "offset": 835559,
+            "string": "Key-On Engine Running Self Test"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000400100100ff6c0100001f001001006400fffffaffe90307ffffff",
+            "gap_before_len": 100,
+            "index": 13977,
+            "offset": 835692,
+            "string": "routine_routine_0301_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13978,
+            "offset": 835769,
+            "string": "routine_routine_0301_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13979,
+            "offset": 835814,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 13980,
+            "offset": 835839,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffff981da540900",
+            "gap_before_len": 66,
+            "index": 13981,
+            "offset": 835930,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13982,
+            "offset": 836011,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13983,
+            "offset": 836085,
+            "string": "routine_0301_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13984,
+            "offset": 836131,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13985,
+            "offset": 836187,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13986,
+            "offset": 836270,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13987,
+            "offset": 836346,
+            "string": "routine_0301_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13988,
+            "offset": 836392,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 42,
+            "index": 13989,
+            "offset": 836449,
+            "string": "routine_0301"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13990,
+            "offset": 836463,
+            "string": "Activate Secondary Boot-loader"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a010080040380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc",
+            "gap_before_len": 114,
+            "index": 13991,
+            "offset": 836609,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13992,
+            "offset": 836690,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13993,
+            "offset": 836764,
+            "string": "routine_0304_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13994,
+            "offset": 836810,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13995,
+            "offset": 836866,
+            "string": "routine_0304_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13996,
+            "offset": 836949,
+            "string": "routine_0304_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13997,
+            "offset": 837025,
+            "string": "routine_0304_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13998,
+            "offset": 837071,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff0000ff2c01000100100100ff6c01000007001001006400fffffaffe9030400bc0000100200be0001ffffffff",
+            "gap_before_len": 61,
+            "index": 13999,
+            "offset": 837147,
+            "string": "Valid Application Software is NOT Present"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14000,
+            "offset": 837190,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0002ffffffff",
+            "gap_before_len": 10,
+            "index": 14001,
+            "offset": 837275,
+            "string": "Valid Application Software is Present"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14002,
+            "offset": 837314,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14003,
+            "offset": 837402,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14004,
+            "offset": 837483,
+            "string": "routine_0304_param_2_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14005,
+            "offset": 837529,
+            "string": "Application Status"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9817f4e0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 42,
+            "index": 14006,
+            "offset": 837591,
+            "string": "routine_0304"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14007,
+            "offset": 837605,
+            "string": "Check Valid Application"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a0100800e0480c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000100100100ff6c01000007001001006400fffffaffe9030400bc00",
+            "gap_before_len": 107,
+            "index": 14008,
+            "offset": 837737,
+            "string": "Clear Transmission Data Monitor"
+          }
+        ]
+      ],
+      "Flash Erase": [
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 399,
+            "offset": 28323,
+            "string": "routine_routine_FF00_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 400,
+            "offset": 28368,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c0100001f001001006400fffffaffe80307ffffffffffffff",
+            "gap_before_len": 30,
+            "index": 401,
+            "offset": 28414,
+            "string": "routine_routine_ff00_start_req_1_subfield_2_bit_1_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 402,
+            "offset": 28491,
+            "string": "routine_routine_FF00_start_req_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 403,
+            "offset": 28536,
+            "string": "Memory Size"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 404,
+            "offset": 28558,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0001ffffffff",
+            "gap_before_len": 60,
+            "index": 405,
+            "offset": 28643,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 406,
+            "offset": 28651,
+            "string": "routine_ff00_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 407,
+            "offset": 28732,
+            "string": "routine_ff00_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 408,
+            "offset": 28806,
+            "string": "routine_FF00_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 409,
+            "offset": 28852,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 410,
+            "offset": 28902,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 411,
+            "offset": 28913,
+            "string": "routine_ff00_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 412,
+            "offset": 28996,
+            "string": "routine_ff00_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 413,
+            "offset": 29072,
+            "string": "routine_FF00_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 414,
+            "offset": 29118,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 415,
+            "offset": 29142,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 27,
+            "index": 416,
+            "offset": 29182,
+            "string": "routine_FF00"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 417,
+            "offset": 29196,
+            "string": "Flash Erase"
+          },
+          {
+            "gap_before_hex": "ffff000d000000040000008924466c6173682045726173658920ff0004000000260500008920ff0100ff2a01008101ff000080c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00",
+            "gap_before_len": 172,
+            "index": 418,
+            "offset": 29381,
+            "string": "routine_routine_ff01_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 419,
+            "offset": 29458,
+            "string": "routine_routine_FF01_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 420,
+            "offset": 29503,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c0100001f001001006400fffffaffe80307ffffffffffffff",
+            "gap_before_len": 30,
+            "index": 421,
+            "offset": 29549,
+            "string": "routine_routine_ff01_start_req_1_subfield_2_bit_1_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 422,
+            "offset": 29626,
+            "string": "routine_routine_FF01_start_req_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 423,
+            "offset": 29671,
+            "string": "Memory Size"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 424,
+            "offset": 29693,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0001ffffffff",
+            "gap_before_len": 60,
+            "index": 425,
+            "offset": 29778,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 426,
+            "offset": 29786,
+            "string": "routine_ff01_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 427,
+            "offset": 29867,
+            "string": "routine_ff01_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 428,
+            "offset": 29941,
+            "string": "routine_FF01_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 429,
+            "offset": 29987,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 430,
+            "offset": 30037,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 431,
+            "offset": 30048,
+            "string": "routine_ff01_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 432,
+            "offset": 30131,
+            "string": "routine_ff01_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 433,
+            "offset": 30207,
+            "string": "routine_FF01_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 434,
+            "offset": 30253,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 435,
+            "offset": 30277,
+            "string": "RoutineInfo"
+          }
+        ],
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14231,
+            "offset": 853535,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 29,
+            "index": 14232,
+            "offset": 853579,
+            "string": "routine_406F"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14233,
+            "offset": 853593,
+            "string": "Injector Flow Test for Gasoline Direct Injection"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a01008100ff000080c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000800100200ff6c0100203f001001006400fffffaffe90307ff",
+            "gap_before_len": 102,
+            "index": 14234,
+            "offset": 853745,
+            "string": "routine_routine_ff00_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14235,
+            "offset": 853822,
+            "string": "routine_routine_FF00_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14236,
+            "offset": 853867,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c0100001f001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 30,
+            "index": 14237,
+            "offset": 853913,
+            "string": "routine_routine_ff00_start_req_1_subfield_2_bit_1_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14238,
+            "offset": 853990,
+            "string": "routine_routine_FF00_start_req_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14239,
+            "offset": 854035,
+            "string": "Memory Size"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9812e640900ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffff981da540900",
+            "gap_before_len": 81,
+            "index": 14240,
+            "offset": 854129,
+            "string": "routine_ff00_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14241,
+            "offset": 854210,
+            "string": "routine_ff00_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14242,
+            "offset": 854284,
+            "string": "routine_FF00_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14243,
+            "offset": 854330,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 14244,
+            "offset": 854386,
+            "string": "routine_ff00_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14245,
+            "offset": 854469,
+            "string": "routine_ff00_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14246,
+            "offset": 854545,
+            "string": "routine_FF00_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14247,
+            "offset": 854591,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 42,
+            "index": 14248,
+            "offset": 854648,
+            "string": "routine_FF00"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14249,
+            "offset": 854662,
+            "string": "Flash Erase"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a01008101ff000080c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000800100200ff6c0100203f001001006400fffffaffe90307ff",
+            "gap_before_len": 102,
+            "index": 14250,
+            "offset": 854777,
+            "string": "routine_routine_ff01_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14251,
+            "offset": 854854,
+            "string": "routine_routine_FF01_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14252,
+            "offset": 854899,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c0100001f001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 30,
+            "index": 14253,
+            "offset": 854945,
+            "string": "routine_routine_ff01_start_req_1_subfield_2_bit_1_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14254,
+            "offset": 855022,
+            "string": "routine_routine_FF01_start_req_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14255,
+            "offset": 855067,
+            "string": "Memory Size"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9812e640900ffff00ffffffffff0000ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffff981da540900",
+            "gap_before_len": 81,
+            "index": 14256,
+            "offset": 855161,
+            "string": "routine_ff01_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14257,
+            "offset": 855242,
+            "string": "routine_ff01_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14258,
+            "offset": 855316,
+            "string": "routine_FF01_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14259,
+            "offset": 855362,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 14260,
+            "offset": 855418,
+            "string": "routine_ff01_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14261,
+            "offset": 855501,
+            "string": "routine_ff01_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14262,
+            "offset": 855577,
+            "string": "routine_FF01_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14263,
+            "offset": 855623,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff0000ff2c01000200100100ff6c0100000f001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 54,
+            "index": 14264,
+            "offset": 855692,
+            "string": "routine_ff01_param_2_start_resp_1_checksum_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14265,
+            "offset": 855763,
+            "string": "routine_FF01_param_2_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14266,
+            "offset": 855809,
+            "string": "Checksum"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9817f4e0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 42,
+            "index": 14267,
+            "offset": 855861,
+            "string": "routine_FF01"
+          }
+        ]
+      ],
+      "Key-On Engine Running Self Test": [
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 85,
+            "offset": 7602,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100300be0000fffffffff9809901",
+            "gap_before_len": 41,
+            "index": 86,
+            "offset": 7656,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff980fc01",
+            "gap_before_len": 14,
+            "index": 87,
+            "offset": 7740,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff9805d02",
+            "gap_before_len": 14,
+            "index": 88,
+            "offset": 7824,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 89,
+            "offset": 7907,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 90,
+            "offset": 7983,
+            "string": "routine_0282_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 91,
+            "offset": 8029,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9806a03ffff00ffffffffff00ffff0000ff360100ffffffff00ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0002fffffffff972",
+            "gap_before_len": 87,
+            "index": 92,
+            "offset": 8131,
+            "string": "routine_0282_stop_resp__routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 93,
+            "offset": 8202,
+            "string": "routine_0282_stop_resp__routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 94,
+            "offset": 8266,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 95,
+            "offset": 8323,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100300be0000fffffffff9809901",
+            "gap_before_len": 41,
+            "index": 96,
+            "offset": 8377,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff980fc01",
+            "gap_before_len": 14,
+            "index": 97,
+            "offset": 8451,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff9805d02",
+            "gap_before_len": 14,
+            "index": 98,
+            "offset": 8525,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 99,
+            "offset": 8598,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 100,
+            "offset": 8664,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 101,
+            "offset": 8721,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9806a03ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 27,
+            "index": 102,
+            "offset": 8763,
+            "string": "routine_0282"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 103,
+            "offset": 8777,
+            "string": "Key-On Engine Running Self Test"
+          },
+          {
+            "gap_before_hex": "ffff00210000000400000089244b65792d4f6e20456e67696e652052756e6e696e672053656c6620546573748920028204000000b60300008920030100ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000",
+            "gap_before_len": 190,
+            "index": 104,
+            "offset": 9000,
+            "string": "routine_routine_0301_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 105,
+            "offset": 9077,
+            "string": "routine_routine_0301_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 106,
+            "offset": 9122,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 107,
+            "offset": 9147,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0001ffffffff",
+            "gap_before_len": 60,
+            "index": 108,
+            "offset": 9232,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 109,
+            "offset": 9240,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 110,
+            "offset": 9321,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 111,
+            "offset": 9395,
+            "string": "routine_0301_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 112,
+            "offset": 9441,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 113,
+            "offset": 9491,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 114,
+            "offset": 9502,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 115,
+            "offset": 9585,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 116,
+            "offset": 9661,
+            "string": "routine_0301_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 117,
+            "offset": 9707,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 118,
+            "offset": 9731,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 27,
+            "index": 119,
+            "offset": 9771,
+            "string": "routine_0301"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 120,
+            "offset": 9785,
+            "string": "Activate Secondary Boot-loader"
+          },
+          {
+            "gap_before_hex": "ffff00200000000400000089244163746976617465205365636f6e6461727920426f6f742d6c6f616465728920030104000000b20400008920030400ff2a010080040380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ff",
+            "gap_before_len": 197,
+            "index": 121,
+            "offset": 10014,
+            "string": "Type 1"
+          }
+        ],
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13958,
+            "offset": 834364,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100300be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13959,
+            "offset": 834420,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff981254c0900",
+            "gap_before_len": 16,
+            "index": 13960,
+            "offset": 834506,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff981864c0900",
+            "gap_before_len": 16,
+            "index": 13961,
+            "offset": 834592,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13962,
+            "offset": 834675,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13963,
+            "offset": 834751,
+            "string": "routine_0282_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13964,
+            "offset": 834797,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffff00ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0002fffffffff9819b4a0900",
+            "gap_before_len": 93,
+            "index": 13965,
+            "offset": 834905,
+            "string": "routine_0282_stop_resp__routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13966,
+            "offset": 834976,
+            "string": "routine_0282_stop_resp__routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13967,
+            "offset": 835040,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13968,
+            "offset": 835097,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100300be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13969,
+            "offset": 835153,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff981254c0900",
+            "gap_before_len": 16,
+            "index": 13970,
+            "offset": 835229,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff981864c0900",
+            "gap_before_len": 16,
+            "index": 13971,
+            "offset": 835305,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13972,
+            "offset": 835378,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13973,
+            "offset": 835444,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13974,
+            "offset": 835501,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 29,
+            "index": 13975,
+            "offset": 835545,
+            "string": "routine_0282"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13976,
+            "offset": 835559,
+            "string": "Key-On Engine Running Self Test"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000400100100ff6c0100001f001001006400fffffaffe90307ffffff",
+            "gap_before_len": 100,
+            "index": 13977,
+            "offset": 835692,
+            "string": "routine_routine_0301_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13978,
+            "offset": 835769,
+            "string": "routine_routine_0301_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13979,
+            "offset": 835814,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 13980,
+            "offset": 835839,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffff981da540900",
+            "gap_before_len": 66,
+            "index": 13981,
+            "offset": 835930,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13982,
+            "offset": 836011,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13983,
+            "offset": 836085,
+            "string": "routine_0301_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13984,
+            "offset": 836131,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13985,
+            "offset": 836187,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13986,
+            "offset": 836270,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13987,
+            "offset": 836346,
+            "string": "routine_0301_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13988,
+            "offset": 836392,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 42,
+            "index": 13989,
+            "offset": 836449,
+            "string": "routine_0301"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13990,
+            "offset": 836463,
+            "string": "Activate Secondary Boot-loader"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a010080040380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc",
+            "gap_before_len": 114,
+            "index": 13991,
+            "offset": 836609,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13992,
+            "offset": 836690,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13993,
+            "offset": 836764,
+            "string": "routine_0304_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13994,
+            "offset": 836810,
+            "string": "RoutineType"
+          }
+        ]
+      ],
+      "On-Demand Self-Test": [
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 24,
+            "offset": 3598,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100300be0000fffffffff9809701",
+            "gap_before_len": 41,
+            "index": 25,
+            "offset": 3652,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff980fa01",
+            "gap_before_len": 14,
+            "index": 26,
+            "offset": 3736,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff9805b02",
+            "gap_before_len": 14,
+            "index": 27,
+            "offset": 3820,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 28,
+            "offset": 3903,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 29,
+            "offset": 3979,
+            "string": "routine_0202_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 30,
+            "offset": 4025,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9806803ffff00ffffffffff00ffff0000ff360100ffffffff00ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0002fffffffff970",
+            "gap_before_len": 87,
+            "index": 31,
+            "offset": 4127,
+            "string": "routine_0202_stop_resp__routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 32,
+            "offset": 4198,
+            "string": "routine_0202_stop_resp__routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 33,
+            "offset": 4262,
+            "string": "routine_routine_0202_stop_resp_0_stop_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 34,
+            "offset": 4319,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100300be0000fffffffff9809701",
+            "gap_before_len": 41,
+            "index": 35,
+            "offset": 4373,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff980fa01",
+            "gap_before_len": 14,
+            "index": 36,
+            "offset": 4447,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff9805b02",
+            "gap_before_len": 14,
+            "index": 37,
+            "offset": 4521,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 38,
+            "offset": 4594,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 39,
+            "offset": 4660,
+            "string": "routine_routine_0202_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 40,
+            "offset": 4717,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9806803ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 27,
+            "index": 41,
+            "offset": 4759,
+            "string": "routine_0202"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 42,
+            "offset": 4773,
+            "string": "On-Demand Self-Test"
+          },
+          {
+            "gap_before_hex": "ffff00150000000400000089244f6e2d44656d616e642053656c662d546573748920020204000000fa0400008920020a00ff2a0100800a0232ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100",
+            "gap_before_len": 184,
+            "index": 43,
+            "offset": 4978,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 44,
+            "offset": 4986,
+            "string": "routine_020a_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 45,
+            "offset": 5067,
+            "string": "routine_020a_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 46,
+            "offset": 5141,
+            "string": "routine_020A_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 47,
+            "offset": 5187,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 48,
+            "offset": 5237,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 49,
+            "offset": 5248,
+            "string": "routine_020a_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 50,
+            "offset": 5331,
+            "string": "routine_020a_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 51,
+            "offset": 5407,
+            "string": "routine_020A_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 52,
+            "offset": 5453,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 53,
+            "offset": 5477,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2c01000100100100ff6c01000007001001006400fffffaffe80307ffffffffffffff",
+            "gap_before_len": 39,
+            "index": 54,
+            "offset": 5529,
+            "string": "routine_020a_param_2_start_resp_1_least_significant_byte_of_the_ecu_configuration_did_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 55,
+            "offset": 5643,
+            "string": "routine_020A_param_2_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 56,
+            "offset": 5689,
+            "string": "Least Significant Byte Of The ECU Configuration DID"
+          },
+          {
+            "gap_before_hex": "ffff00ffffff00ff440100000000100100ff6c01000007001001006400fffffaffe80307ffffffffffffff",
+            "gap_before_len": 43,
+            "index": 57,
+            "offset": 5785,
+            "string": "routine_020a_results_resp_param__param_1_resp_sub_item_bit_1_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 58,
+            "offset": 5869,
+            "string": "routine_020A_results_resp_param__param_1_resp_sub_item_bit_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 59,
+            "offset": 5931,
+            "string": "Least Significant Byte Of The ECU Configuration DID"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff00ffff",
+            "gap_before_len": 11,
+            "index": 60,
+            "offset": 5995,
+            "string": "Response Additional Data"
+          }
+        ],
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13906,
+            "offset": 830593,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100300be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13907,
+            "offset": 830649,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff981254c0900",
+            "gap_before_len": 16,
+            "index": 13908,
+            "offset": 830735,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff981864c0900",
+            "gap_before_len": 16,
+            "index": 13909,
+            "offset": 830821,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13910,
+            "offset": 830904,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13911,
+            "offset": 830980,
+            "string": "routine_0202_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13912,
+            "offset": 831026,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffff00ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0002fffffffff9819b4a0900",
+            "gap_before_len": 93,
+            "index": 13913,
+            "offset": 831134,
+            "string": "routine_0202_stop_resp__routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13914,
+            "offset": 831205,
+            "string": "routine_0202_stop_resp__routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13915,
+            "offset": 831269,
+            "string": "routine_routine_0202_stop_resp_0_stop_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13916,
+            "offset": 831326,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100300be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13917,
+            "offset": 831382,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff981254c0900",
+            "gap_before_len": 16,
+            "index": 13918,
+            "offset": 831458,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff981864c0900",
+            "gap_before_len": 16,
+            "index": 13919,
+            "offset": 831534,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13920,
+            "offset": 831607,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13921,
+            "offset": 831673,
+            "string": "routine_routine_0202_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13922,
+            "offset": 831730,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 29,
+            "index": 13923,
+            "offset": 831774,
+            "string": "routine_0202"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13924,
+            "offset": 831788,
+            "string": "On-Demand Self-Test"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a0100800a0232ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000",
+            "gap_before_len": 106,
+            "index": 13925,
+            "offset": 831915,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13926,
+            "offset": 831923,
+            "string": "routine_020a_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13927,
+            "offset": 832004,
+            "string": "routine_020a_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13928,
+            "offset": 832078,
+            "string": "routine_020A_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13929,
+            "offset": 832124,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13930,
+            "offset": 832180,
+            "string": "routine_020a_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13931,
+            "offset": 832263,
+            "string": "routine_020a_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13932,
+            "offset": 832339,
+            "string": "routine_020A_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13933,
+            "offset": 832385,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff0000ff2c01000100100100ff6c01000007001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 54,
+            "index": 13934,
+            "offset": 832454,
+            "string": "routine_020a_param_2_start_resp_1_least_significant_byte_of_the_ecu_configuration_did_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13935,
+            "offset": 832568,
+            "string": "routine_020A_param_2_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13936,
+            "offset": 832614,
+            "string": "Least Significant Byte Of The ECU Configuration DID"
+          },
+          {
+            "gap_before_hex": "ffff00ffffff00ff440100000000100100ff6c01000007001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 43,
+            "index": 13937,
+            "offset": 832710,
+            "string": "routine_020a_results_resp_param__param_1_resp_sub_item_bit_1_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13938,
+            "offset": 832794,
+            "string": "routine_020A_results_resp_param__param_1_resp_sub_item_bit_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13939,
+            "offset": 832856,
+            "string": "Least Significant Byte Of The ECU Configuration DID"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff00fffff9817f4e0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 44,
+            "index": 13940,
+            "offset": 832953,
+            "string": "routine_020A"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13941,
+            "offset": 832967,
+            "string": "Report All Inhale / Exhale ECU Configuration DIDs"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a01008082028120bf0200ffffffffffffffff00ff300100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0002fffffffff9819b4a0900",
+            "gap_before_len": 90,
+            "index": 13942,
+            "offset": 833108,
+            "string": "routine_0282_results_resp_param__param_0_resp_sub_item_bit_1_data_def_enum_1"
+          }
+        ]
+      ],
+      "routine_0202": [
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 23,
+            "offset": 3552,
+            "string": "routine_0202_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 24,
+            "offset": 3598,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100300be0000fffffffff9809701",
+            "gap_before_len": 41,
+            "index": 25,
+            "offset": 3652,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff980fa01",
+            "gap_before_len": 14,
+            "index": 26,
+            "offset": 3736,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff9805b02",
+            "gap_before_len": 14,
+            "index": 27,
+            "offset": 3820,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 28,
+            "offset": 3903,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 29,
+            "offset": 3979,
+            "string": "routine_0202_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 30,
+            "offset": 4025,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9806803ffff00ffffffffff00ffff0000ff360100ffffffff00ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0002fffffffff970",
+            "gap_before_len": 87,
+            "index": 31,
+            "offset": 4127,
+            "string": "routine_0202_stop_resp__routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 32,
+            "offset": 4198,
+            "string": "routine_0202_stop_resp__routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 33,
+            "offset": 4262,
+            "string": "routine_routine_0202_stop_resp_0_stop_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 34,
+            "offset": 4319,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100300be0000fffffffff9809701",
+            "gap_before_len": 41,
+            "index": 35,
+            "offset": 4373,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff980fa01",
+            "gap_before_len": 14,
+            "index": 36,
+            "offset": 4447,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff9805b02",
+            "gap_before_len": 14,
+            "index": 37,
+            "offset": 4521,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 38,
+            "offset": 4594,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 39,
+            "offset": 4660,
+            "string": "routine_routine_0202_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 40,
+            "offset": 4717,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9806803ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 27,
+            "index": 41,
+            "offset": 4759,
+            "string": "routine_0202"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 42,
+            "offset": 4773,
+            "string": "On-Demand Self-Test"
+          },
+          {
+            "gap_before_hex": "ffff00150000000400000089244f6e2d44656d616e642053656c662d546573748920020204000000fa0400008920020a00ff2a0100800a0232ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100",
+            "gap_before_len": 184,
+            "index": 43,
+            "offset": 4978,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 44,
+            "offset": 4986,
+            "string": "routine_020a_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 45,
+            "offset": 5067,
+            "string": "routine_020a_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 46,
+            "offset": 5141,
+            "string": "routine_020A_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 47,
+            "offset": 5187,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 48,
+            "offset": 5237,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 49,
+            "offset": 5248,
+            "string": "routine_020a_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 50,
+            "offset": 5331,
+            "string": "routine_020a_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 51,
+            "offset": 5407,
+            "string": "routine_020A_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 52,
+            "offset": 5453,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 53,
+            "offset": 5477,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2c01000100100100ff6c01000007001001006400fffffaffe80307ffffffffffffff",
+            "gap_before_len": 39,
+            "index": 54,
+            "offset": 5529,
+            "string": "routine_020a_param_2_start_resp_1_least_significant_byte_of_the_ecu_configuration_did_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 55,
+            "offset": 5643,
+            "string": "routine_020A_param_2_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 56,
+            "offset": 5689,
+            "string": "Least Significant Byte Of The ECU Configuration DID"
+          },
+          {
+            "gap_before_hex": "ffff00ffffff00ff440100000000100100ff6c01000007001001006400fffffaffe80307ffffffffffffff",
+            "gap_before_len": 43,
+            "index": 57,
+            "offset": 5785,
+            "string": "routine_020a_results_resp_param__param_1_resp_sub_item_bit_1_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 58,
+            "offset": 5869,
+            "string": "routine_020A_results_resp_param__param_1_resp_sub_item_bit_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 59,
+            "offset": 5931,
+            "string": "Least Significant Byte Of The ECU Configuration DID"
+          }
+        ],
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13905,
+            "offset": 830547,
+            "string": "routine_0202_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13906,
+            "offset": 830593,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100300be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13907,
+            "offset": 830649,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff981254c0900",
+            "gap_before_len": 16,
+            "index": 13908,
+            "offset": 830735,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff981864c0900",
+            "gap_before_len": 16,
+            "index": 13909,
+            "offset": 830821,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13910,
+            "offset": 830904,
+            "string": "routine_0202_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13911,
+            "offset": 830980,
+            "string": "routine_0202_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13912,
+            "offset": 831026,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffff00ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0002fffffffff9819b4a0900",
+            "gap_before_len": 93,
+            "index": 13913,
+            "offset": 831134,
+            "string": "routine_0202_stop_resp__routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13914,
+            "offset": 831205,
+            "string": "routine_0202_stop_resp__routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13915,
+            "offset": 831269,
+            "string": "routine_routine_0202_stop_resp_0_stop_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13916,
+            "offset": 831326,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100300be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13917,
+            "offset": 831382,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff981254c0900",
+            "gap_before_len": 16,
+            "index": 13918,
+            "offset": 831458,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff981864c0900",
+            "gap_before_len": 16,
+            "index": 13919,
+            "offset": 831534,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13920,
+            "offset": 831607,
+            "string": "routine_0202_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13921,
+            "offset": 831673,
+            "string": "routine_routine_0202_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13922,
+            "offset": 831730,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 29,
+            "index": 13923,
+            "offset": 831774,
+            "string": "routine_0202"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13924,
+            "offset": 831788,
+            "string": "On-Demand Self-Test"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a0100800a0232ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000",
+            "gap_before_len": 106,
+            "index": 13925,
+            "offset": 831915,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13926,
+            "offset": 831923,
+            "string": "routine_020a_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13927,
+            "offset": 832004,
+            "string": "routine_020a_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13928,
+            "offset": 832078,
+            "string": "routine_020A_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13929,
+            "offset": 832124,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13930,
+            "offset": 832180,
+            "string": "routine_020a_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13931,
+            "offset": 832263,
+            "string": "routine_020a_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13932,
+            "offset": 832339,
+            "string": "routine_020A_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13933,
+            "offset": 832385,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff0000ff2c01000100100100ff6c01000007001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 54,
+            "index": 13934,
+            "offset": 832454,
+            "string": "routine_020a_param_2_start_resp_1_least_significant_byte_of_the_ecu_configuration_did_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13935,
+            "offset": 832568,
+            "string": "routine_020A_param_2_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13936,
+            "offset": 832614,
+            "string": "Least Significant Byte Of The ECU Configuration DID"
+          },
+          {
+            "gap_before_hex": "ffff00ffffff00ff440100000000100100ff6c01000007001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 43,
+            "index": 13937,
+            "offset": 832710,
+            "string": "routine_020a_results_resp_param__param_1_resp_sub_item_bit_1_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13938,
+            "offset": 832794,
+            "string": "routine_020A_results_resp_param__param_1_resp_sub_item_bit_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13939,
+            "offset": 832856,
+            "string": "Least Significant Byte Of The ECU Configuration DID"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff00fffff9817f4e0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 44,
+            "index": 13940,
+            "offset": 832953,
+            "string": "routine_020A"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13941,
+            "offset": 832967,
+            "string": "Report All Inhale / Exhale ECU Configuration DIDs"
+          }
+        ]
+      ],
+      "routine_0282": [
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 84,
+            "offset": 7556,
+            "string": "routine_0282_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 85,
+            "offset": 7602,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100300be0000fffffffff9809901",
+            "gap_before_len": 41,
+            "index": 86,
+            "offset": 7656,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff980fc01",
+            "gap_before_len": 14,
+            "index": 87,
+            "offset": 7740,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff9805d02",
+            "gap_before_len": 14,
+            "index": 88,
+            "offset": 7824,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 89,
+            "offset": 7907,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 90,
+            "offset": 7983,
+            "string": "routine_0282_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 91,
+            "offset": 8029,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9806a03ffff00ffffffffff00ffff0000ff360100ffffffff00ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0002fffffffff972",
+            "gap_before_len": 87,
+            "index": 92,
+            "offset": 8131,
+            "string": "routine_0282_stop_resp__routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 93,
+            "offset": 8202,
+            "string": "routine_0282_stop_resp__routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 94,
+            "offset": 8266,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 95,
+            "offset": 8323,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100300be0000fffffffff9809901",
+            "gap_before_len": 41,
+            "index": 96,
+            "offset": 8377,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff980fc01",
+            "gap_before_len": 14,
+            "index": 97,
+            "offset": 8451,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff9805d02",
+            "gap_before_len": 14,
+            "index": 98,
+            "offset": 8525,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 99,
+            "offset": 8598,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 100,
+            "offset": 8664,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 101,
+            "offset": 8721,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9806a03ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 27,
+            "index": 102,
+            "offset": 8763,
+            "string": "routine_0282"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 103,
+            "offset": 8777,
+            "string": "Key-On Engine Running Self Test"
+          },
+          {
+            "gap_before_hex": "ffff00210000000400000089244b65792d4f6e20456e67696e652052756e6e696e672053656c6620546573748920028204000000b60300008920030100ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000",
+            "gap_before_len": 190,
+            "index": 104,
+            "offset": 9000,
+            "string": "routine_routine_0301_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 105,
+            "offset": 9077,
+            "string": "routine_routine_0301_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 106,
+            "offset": 9122,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 107,
+            "offset": 9147,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0001ffffffff",
+            "gap_before_len": 60,
+            "index": 108,
+            "offset": 9232,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 109,
+            "offset": 9240,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 110,
+            "offset": 9321,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 111,
+            "offset": 9395,
+            "string": "routine_0301_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 112,
+            "offset": 9441,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 113,
+            "offset": 9491,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 114,
+            "offset": 9502,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 115,
+            "offset": 9585,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 116,
+            "offset": 9661,
+            "string": "routine_0301_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 117,
+            "offset": 9707,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 118,
+            "offset": 9731,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 27,
+            "index": 119,
+            "offset": 9771,
+            "string": "routine_0301"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 120,
+            "offset": 9785,
+            "string": "Activate Secondary Boot-loader"
+          }
+        ],
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13957,
+            "offset": 834318,
+            "string": "routine_0282_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13958,
+            "offset": 834364,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100300be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13959,
+            "offset": 834420,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff981254c0900",
+            "gap_before_len": 16,
+            "index": 13960,
+            "offset": 834506,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff981864c0900",
+            "gap_before_len": 16,
+            "index": 13961,
+            "offset": 834592,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13962,
+            "offset": 834675,
+            "string": "routine_0282_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13963,
+            "offset": 834751,
+            "string": "routine_0282_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13964,
+            "offset": 834797,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffff00ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0002fffffffff9819b4a0900",
+            "gap_before_len": 93,
+            "index": 13965,
+            "offset": 834905,
+            "string": "routine_0282_stop_resp__routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13966,
+            "offset": 834976,
+            "string": "routine_0282_stop_resp__routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13967,
+            "offset": 835040,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13968,
+            "offset": 835097,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100300be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13969,
+            "offset": 835153,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0001fffffffff981254c0900",
+            "gap_before_len": 16,
+            "index": 13970,
+            "offset": 835229,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff0000be0002fffffffff981864c0900",
+            "gap_before_len": 16,
+            "index": 13971,
+            "offset": 835305,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13972,
+            "offset": 835378,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13973,
+            "offset": 835444,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13974,
+            "offset": 835501,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 29,
+            "index": 13975,
+            "offset": 835545,
+            "string": "routine_0282"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13976,
+            "offset": 835559,
+            "string": "Key-On Engine Running Self Test"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000400100100ff6c0100001f001001006400fffffaffe90307ffffff",
+            "gap_before_len": 100,
+            "index": 13977,
+            "offset": 835692,
+            "string": "routine_routine_0301_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13978,
+            "offset": 835769,
+            "string": "routine_routine_0301_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13979,
+            "offset": 835814,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 13980,
+            "offset": 835839,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffff981da540900",
+            "gap_before_len": 66,
+            "index": 13981,
+            "offset": 835930,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13982,
+            "offset": 836011,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13983,
+            "offset": 836085,
+            "string": "routine_0301_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13984,
+            "offset": 836131,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13985,
+            "offset": 836187,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13986,
+            "offset": 836270,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13987,
+            "offset": 836346,
+            "string": "routine_0301_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13988,
+            "offset": 836392,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 42,
+            "index": 13989,
+            "offset": 836449,
+            "string": "routine_0301"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13990,
+            "offset": 836463,
+            "string": "Activate Secondary Boot-loader"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a010080040380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc",
+            "gap_before_len": 114,
+            "index": 13991,
+            "offset": 836609,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13992,
+            "offset": 836690,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13993,
+            "offset": 836764,
+            "string": "routine_0304_param_1_start_resp_1_subfield_1"
+          }
+        ]
+      ],
+      "routine_0301": [
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 101,
+            "offset": 8721,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9806a03ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 27,
+            "index": 102,
+            "offset": 8763,
+            "string": "routine_0282"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 103,
+            "offset": 8777,
+            "string": "Key-On Engine Running Self Test"
+          },
+          {
+            "gap_before_hex": "ffff00210000000400000089244b65792d4f6e20456e67696e652052756e6e696e672053656c6620546573748920028204000000b60300008920030100ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000",
+            "gap_before_len": 190,
+            "index": 104,
+            "offset": 9000,
+            "string": "routine_routine_0301_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 105,
+            "offset": 9077,
+            "string": "routine_routine_0301_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 106,
+            "offset": 9122,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 107,
+            "offset": 9147,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0001ffffffff",
+            "gap_before_len": 60,
+            "index": 108,
+            "offset": 9232,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 109,
+            "offset": 9240,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 110,
+            "offset": 9321,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 111,
+            "offset": 9395,
+            "string": "routine_0301_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 112,
+            "offset": 9441,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 113,
+            "offset": 9491,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 114,
+            "offset": 9502,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 115,
+            "offset": 9585,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 116,
+            "offset": 9661,
+            "string": "routine_0301_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 117,
+            "offset": 9707,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 118,
+            "offset": 9731,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 27,
+            "index": 119,
+            "offset": 9771,
+            "string": "routine_0301"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 120,
+            "offset": 9785,
+            "string": "Activate Secondary Boot-loader"
+          },
+          {
+            "gap_before_hex": "ffff00200000000400000089244163746976617465205365636f6e6461727920426f6f742d6c6f616465728920030104000000b20400008920030400ff2a010080040380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ff",
+            "gap_before_len": 197,
+            "index": 121,
+            "offset": 10014,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 122,
+            "offset": 10022,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 123,
+            "offset": 10103,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 124,
+            "offset": 10177,
+            "string": "routine_0304_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 125,
+            "offset": 10223,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 126,
+            "offset": 10273,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 127,
+            "offset": 10284,
+            "string": "routine_0304_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 128,
+            "offset": 10367,
+            "string": "routine_0304_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 129,
+            "offset": 10443,
+            "string": "routine_0304_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 130,
+            "offset": 10489,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 131,
+            "offset": 10513,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2c01000100100100ff6c01000007001001006400fffffaffe8030400bc0000100200be0001ffffffff",
+            "gap_before_len": 46,
+            "index": 132,
+            "offset": 10572,
+            "string": "Valid Application Software is NOT Present"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 133,
+            "offset": 10615,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0002ffffffff",
+            "gap_before_len": 10,
+            "index": 134,
+            "offset": 10700,
+            "string": "Valid Application Software is Present"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 135,
+            "offset": 10739,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 136,
+            "offset": 10827,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 137,
+            "offset": 10908,
+            "string": "routine_0304_param_2_start_resp_1_subfield_1"
+          }
+        ],
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13971,
+            "offset": 835305,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def_enum_3"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13972,
+            "offset": 835378,
+            "string": "routine_0282_stop_resp__routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13973,
+            "offset": 835444,
+            "string": "routine_routine_0282_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13974,
+            "offset": 835501,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 29,
+            "index": 13975,
+            "offset": 835545,
+            "string": "routine_0282"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13976,
+            "offset": 835559,
+            "string": "Key-On Engine Running Self Test"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000400100100ff6c0100001f001001006400fffffaffe90307ffffff",
+            "gap_before_len": 100,
+            "index": 13977,
+            "offset": 835692,
+            "string": "routine_routine_0301_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13978,
+            "offset": 835769,
+            "string": "routine_routine_0301_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13979,
+            "offset": 835814,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 13980,
+            "offset": 835839,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffff981da540900",
+            "gap_before_len": 66,
+            "index": 13981,
+            "offset": 835930,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13982,
+            "offset": 836011,
+            "string": "routine_0301_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13983,
+            "offset": 836085,
+            "string": "routine_0301_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13984,
+            "offset": 836131,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13985,
+            "offset": 836187,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13986,
+            "offset": 836270,
+            "string": "routine_0301_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13987,
+            "offset": 836346,
+            "string": "routine_0301_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13988,
+            "offset": 836392,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 42,
+            "index": 13989,
+            "offset": 836449,
+            "string": "routine_0301"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13990,
+            "offset": 836463,
+            "string": "Activate Secondary Boot-loader"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a010080040380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc",
+            "gap_before_len": 114,
+            "index": 13991,
+            "offset": 836609,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13992,
+            "offset": 836690,
+            "string": "routine_0304_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13993,
+            "offset": 836764,
+            "string": "routine_0304_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13994,
+            "offset": 836810,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 13995,
+            "offset": 836866,
+            "string": "routine_0304_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 13996,
+            "offset": 836949,
+            "string": "routine_0304_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 13997,
+            "offset": 837025,
+            "string": "routine_0304_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 13998,
+            "offset": 837071,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff0000ff2c01000100100100ff6c01000007001001006400fffffaffe9030400bc0000100200be0001ffffffff",
+            "gap_before_len": 61,
+            "index": 13999,
+            "offset": 837147,
+            "string": "Valid Application Software is NOT Present"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14000,
+            "offset": 837190,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff0000be0002ffffffff",
+            "gap_before_len": 10,
+            "index": 14001,
+            "offset": 837275,
+            "string": "Valid Application Software is Present"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14002,
+            "offset": 837314,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def_enum_2"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14003,
+            "offset": 837402,
+            "string": "routine_0304_param_2_start_resp_1_application_status_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14004,
+            "offset": 837483,
+            "string": "routine_0304_param_2_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14005,
+            "offset": 837529,
+            "string": "Application Status"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9817f4e0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 42,
+            "index": 14006,
+            "offset": 837591,
+            "string": "routine_0304"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14007,
+            "offset": 837605,
+            "string": "Check Valid Application"
+          }
+        ]
+      ],
+      "routine_FF00": [
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 398,
+            "offset": 28246,
+            "string": "routine_routine_ff00_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 399,
+            "offset": 28323,
+            "string": "routine_routine_FF00_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 400,
+            "offset": 28368,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c0100001f001001006400fffffaffe80307ffffffffffffff",
+            "gap_before_len": 30,
+            "index": 401,
+            "offset": 28414,
+            "string": "routine_routine_ff00_start_req_1_subfield_2_bit_1_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 402,
+            "offset": 28491,
+            "string": "routine_routine_FF00_start_req_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 403,
+            "offset": 28536,
+            "string": "Memory Size"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 404,
+            "offset": 28558,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0001ffffffff",
+            "gap_before_len": 60,
+            "index": 405,
+            "offset": 28643,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 406,
+            "offset": 28651,
+            "string": "routine_ff00_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 407,
+            "offset": 28732,
+            "string": "routine_ff00_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 408,
+            "offset": 28806,
+            "string": "routine_FF00_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 409,
+            "offset": 28852,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 410,
+            "offset": 28902,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 411,
+            "offset": 28913,
+            "string": "routine_ff00_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 412,
+            "offset": 28996,
+            "string": "routine_ff00_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 413,
+            "offset": 29072,
+            "string": "routine_FF00_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 414,
+            "offset": 29118,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 415,
+            "offset": 29142,
+            "string": "RoutineInfo"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 27,
+            "index": 416,
+            "offset": 29182,
+            "string": "routine_FF00"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 417,
+            "offset": 29196,
+            "string": "Flash Erase"
+          },
+          {
+            "gap_before_hex": "ffff000d000000040000008924466c6173682045726173658920ff0004000000260500008920ff0100ff2a01008101ff000080c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00",
+            "gap_before_len": 172,
+            "index": 418,
+            "offset": 29381,
+            "string": "routine_routine_ff01_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 419,
+            "offset": 29458,
+            "string": "routine_routine_FF01_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 420,
+            "offset": 29503,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c0100001f001001006400fffffaffe80307ffffffffffffff",
+            "gap_before_len": 30,
+            "index": 421,
+            "offset": 29549,
+            "string": "routine_routine_ff01_start_req_1_subfield_2_bit_1_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 422,
+            "offset": 29626,
+            "string": "routine_routine_FF01_start_req_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 423,
+            "offset": 29671,
+            "string": "Memory Size"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffffff",
+            "gap_before_len": 9,
+            "index": 424,
+            "offset": 29693,
+            "string": "Request Additional Data"
+          },
+          {
+            "gap_before_hex": "ffff00ffffffffff0000ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe8030400bc0000100100be0001ffffffff",
+            "gap_before_len": 60,
+            "index": 425,
+            "offset": 29778,
+            "string": "Type 1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 426,
+            "offset": 29786,
+            "string": "routine_ff01_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 427,
+            "offset": 29867,
+            "string": "routine_ff01_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 428,
+            "offset": 29941,
+            "string": "routine_FF01_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 429,
+            "offset": 29987,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe8030400bc0000100100be0000ffffffff",
+            "gap_before_len": 37,
+            "index": 430,
+            "offset": 30037,
+            "string": "completed"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 431,
+            "offset": 30048,
+            "string": "routine_ff01_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 432,
+            "offset": 30131,
+            "string": "routine_ff01_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 433,
+            "offset": 30207,
+            "string": "routine_FF01_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 434,
+            "offset": 30253,
+            "string": "RoutineStatus"
+          }
+        ],
+        [
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14230,
+            "offset": 853478,
+            "string": "routine_routine_406F_stop_resp_0_stop_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14231,
+            "offset": 853535,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff00ffff",
+            "gap_before_len": 29,
+            "index": 14232,
+            "offset": 853579,
+            "string": "routine_406F"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14233,
+            "offset": 853593,
+            "string": "Injector Flow Test for Gasoline Direct Injection"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a01008100ff000080c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000800100200ff6c0100203f001001006400fffffaffe90307ff",
+            "gap_before_len": 102,
+            "index": 14234,
+            "offset": 853745,
+            "string": "routine_routine_ff00_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14235,
+            "offset": 853822,
+            "string": "routine_routine_FF00_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14236,
+            "offset": 853867,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c0100001f001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 30,
+            "index": 14237,
+            "offset": 853913,
+            "string": "routine_routine_ff00_start_req_1_subfield_2_bit_1_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14238,
+            "offset": 853990,
+            "string": "routine_routine_FF00_start_req_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14239,
+            "offset": 854035,
+            "string": "Memory Size"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9812e640900ffff00ffffffffff0000ff32010000100100ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffff981da540900",
+            "gap_before_len": 81,
+            "index": 14240,
+            "offset": 854129,
+            "string": "routine_ff00_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14241,
+            "offset": 854210,
+            "string": "routine_ff00_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14242,
+            "offset": 854284,
+            "string": "routine_FF00_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14243,
+            "offset": 854330,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 14244,
+            "offset": 854386,
+            "string": "routine_ff00_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14245,
+            "offset": 854469,
+            "string": "routine_ff00_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14246,
+            "offset": 854545,
+            "string": "routine_FF00_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14247,
+            "offset": 854591,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff00ffffffffff00ffff0000ff360100ffffffffffffff00ffff",
+            "gap_before_len": 42,
+            "index": 14248,
+            "offset": 854648,
+            "string": "routine_FF00"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14249,
+            "offset": 854662,
+            "string": "Flash Erase"
+          },
+          {
+            "gap_before_hex": "ffff0000ff2a01008101ff000080c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000800100200ff6c0100203f001001006400fffffaffe90307ff",
+            "gap_before_len": 102,
+            "index": 14250,
+            "offset": 854777,
+            "string": "routine_routine_ff01_start_req_1_subfield_1_bit_0_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14251,
+            "offset": 854854,
+            "string": "routine_routine_FF01_start_req_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14252,
+            "offset": 854899,
+            "string": "Memory Address"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c0100001f001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 30,
+            "index": 14253,
+            "offset": 854945,
+            "string": "routine_routine_ff01_start_req_1_subfield_2_bit_1_req_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14254,
+            "offset": 855022,
+            "string": "routine_routine_FF01_start_req_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14255,
+            "offset": 855067,
+            "string": "Memory Size"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff9812e640900ffff00ffffffffff0000ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffff981da540900",
+            "gap_before_len": 81,
+            "index": 14256,
+            "offset": 855161,
+            "string": "routine_ff01_param_1_start_resp_1_routinetype_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14257,
+            "offset": 855242,
+            "string": "routine_ff01_param_1_start_resp_1_routinetype_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14258,
+            "offset": 855316,
+            "string": "routine_FF01_param_1_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14259,
+            "offset": 855362,
+            "string": "RoutineType"
+          },
+          {
+            "gap_before_hex": "ffff0000ff6c01000003001001006400fffffaffe9030400bc0000100100be0000fffffffff981c24b0900",
+            "gap_before_len": 43,
+            "index": 14260,
+            "offset": 855418,
+            "string": "routine_ff01_param_1_start_resp_1_routinestatus_resp_data_def_enum_1"
+          },
+          {
+            "gap_before_hex": "ff00ffffffff00ffffffffffff",
+            "gap_before_len": 13,
+            "index": 14261,
+            "offset": 855501,
+            "string": "routine_ff01_param_1_start_resp_1_routinestatus_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14262,
+            "offset": 855577,
+            "string": "routine_FF01_param_1_start_resp_1_subfield_2"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14263,
+            "offset": 855623,
+            "string": "RoutineStatus"
+          },
+          {
+            "gap_before_hex": "ffff00fffffffffffff981934d0900ffff0000ff2c01000200100100ff6c0100000f001001006400fffffaffe90307ffffffffffffff",
+            "gap_before_len": 54,
+            "index": 14264,
+            "offset": 855692,
+            "string": "routine_ff01_param_2_start_resp_1_checksum_resp_data_def"
+          },
+          {
+            "gap_before_hex": "ff00ff001000ffffffffffffff",
+            "gap_before_len": 13,
+            "index": 14265,
+            "offset": 855763,
+            "string": "routine_FF01_param_2_start_resp_1_subfield_1"
+          },
+          {
+            "gap_before_hex": "",
+            "gap_before_len": 0,
+            "index": 14266,
+            "offset": 855809,
+            "string": "Checksum"
+          }
+        ]
+      ]
+    },
+    "record_count": 33218,
+    "routine_tail_comparison": {
+      "routine_0202": [
+        {
+          "next_256_hex": "fc134f6e2d44656d616e642053656c662d54657374ffff00150000000400000089244f6e2d44656d616e642053656c662d546573748920020204000000fa0400008920020a00ff2a0100800a0232ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffa0122636f6d2e666f72642e657469732e72756e74696d652e6d64782e44617461547970650400bc0000100100be0001fffffffffc06547970652031fc42726f7574696e655f303230615f706172616d5f315f73746172745f726573705f315f726f7574696e65",
+          "offset": 4759
+        },
+        {
+          "next_256_hex": "fc134f6e2d44656d616e642053656c662d54657374ffff0000ff2a0100800a0232ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffffc06547970652031fc42726f7574696e655f303230615f706172616d5f315f73746172745f726573705f315f726f7574696e65747970655f726573705f646174615f6465665f656e756d5f31ff00ffffffff00fffffffffffffc3b726f7574696e655f303230615f706172616d5f315f73746172745f726573705f315f726f7574",
+          "offset": 831774
+        }
+      ],
+      "routine_0282": [
+        {
+          "next_256_hex": "fc1f4b65792d4f6e20456e67696e652052756e6e696e672053656c662054657374ffff00210000000400000089244b65792d4f6e20456e67696e652052756e6e696e672053656c6620546573748920028204000000b60300008920030100ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000400100100ff6c0100001f001001006400fffffa0122636f6d2e666f72642e657469732e72756e74696d652e6d64782e446174615479706507fffffffffffffffc3e726f7574696e655f726f7574696e655f303330315f73746172745f7265715f",
+          "offset": 8763
+        },
+        {
+          "next_256_hex": "fc1f4b65792d4f6e20456e67696e652052756e6e696e672053656c662054657374ffff0000ff2a010080010380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000400100100ff6c0100001f001001006400fffffaffe90307fffffffffffffffc3e726f7574696e655f726f7574696e655f303330315f73746172745f7265715f315f7375626669656c645f315f6269745f305f7265715f646174615f646566ff00ff001000fffffffffffffffc2b726f7574696e655f726f7574696e655f303330315f73746172745f7265715f315f7375626669656c645f31fc",
+          "offset": 835545
+        }
+      ],
+      "routine_0301": [
+        {
+          "next_256_hex": "fc1e4163746976617465205365636f6e6461727920426f6f742d6c6f61646572ffff00200000000400000089244163746976617465205365636f6e6461727920426f6f742d6c6f616465728920030104000000b20400008920030400ff2a010080040380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffa0122636f6d2e666f72642e657469732e72756e74696d652e6d64782e44617461547970650400bc0000100100be0001fffffffffc06547970652031fc42726f7574696e655f303330345f70617261",
+          "offset": 9771
+        },
+        {
+          "next_256_hex": "fc1e4163746976617465205365636f6e6461727920426f6f742d6c6f61646572ffff0000ff2a010080040380c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffffff00ff32010000100200ff2c01000100100200ff6c01000407001001006400fffffaffe9030400bc0000100100be0001fffffffff981da540900fc42726f7574696e655f303330345f706172616d5f315f73746172745f726573705f315f726f7574696e65747970655f726573705f646174615f6465665f656e756d5f31ff00ffffffff00fffffffffffffc3b726f7574696e655f303330345f706172616d5f315f73746172745f",
+          "offset": 836449
+        }
+      ],
+      "routine_FF00": [
+        {
+          "next_256_hex": "fc0b466c617368204572617365ffff000d000000040000008924466c6173682045726173658920ff0004000000260500008920ff0100ff2a01008101ff000080c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000800100200ff6c0100203f001001006400fffffa0122636f6d2e666f72642e657469732e72756e74696d652e6d64782e446174615479706507fffffffffffffffc3e726f7574696e655f726f7574696e655f666630315f73746172745f7265715f315f7375626669656c645f315f6269745f305f7265715f646174615f646566ff00ff001000ff",
+          "offset": 29182
+        },
+        {
+          "next_256_hex": "fc0b466c617368204572617365ffff0000ff2a01008101ff000080c800ffffffffffffffff00ff300100ffffffff00ff320100001000ffffffffff00ffff0000ff340100ffffff00ff2e010000100100ff2c01000800100200ff6c0100203f001001006400fffffaffe90307fffffffffffffffc3e726f7574696e655f726f7574696e655f666630315f73746172745f7265715f315f7375626669656c645f315f6269745f305f7265715f646174615f646566ff00ff001000fffffffffffffffc2b726f7574696e655f726f7574696e655f464630315f73746172745f7265715f315f7375626669656c645f31fc0e4d656d6f72792041646472657373ffff00",
+          "offset": 854648
+        }
+      ]
+    },
+    "size": 2579808
+  },
   "exact_name_files": [
     "firmware/_fdrs_archive/extracted/G2498324.mdx.json",
     "firmware/_fdrs_archive/extracted/G2498037.mdx.json",
@@ -77,6 +4321,7 @@
       "0x00002196\troutine_0282_stop_resp__routinestatus_resp_data_def",
       "0x000021d8\troutine_routine_0282_stop_resp_0_stop_resp_1_subfield_2",
       "0x0000223b\troutine_0282",
+      "0x00002249\tKey-On Engine Running Self Test",
       "0x000cb654\troutine_0282_results_resp_param__param_0_resp_sub_item_bit_1_data_def_enum_1",
       "0x000cb6af\troutine_0282_results_resp_param__param_0_resp_sub_item_bit_1_data_def",
       "0x000cb703\troutine_0282_results_resp_param__param_0_resp_sub_item_bit_1",
@@ -103,7 +4348,8 @@
       "0x000cbee9\troutine_0282_stop_resp__routinestatus_resp_data_def_enum_3",
       "0x000cbf32\troutine_0282_stop_resp__routinestatus_resp_data_def",
       "0x000cbf74\troutine_routine_0282_stop_resp_0_stop_resp_1_subfield_2",
-      "0x000cbfd9\troutine_0282"
+      "0x000cbfd9\troutine_0282",
+      "0x000cbfe7\tKey-On Engine Running Self Test"
     ],
     "has_results_req_string": false,
     "has_results_resp_string": true,
