@@ -21,18 +21,11 @@ KOER_RESULTS_POSITIVE = bytes.fromhex("71 03 02 82")
 
 # Ford FDRS diagnostic definitions identify 0x0282 as "Key-On Engine Running
 # Self Test" and model the routine as a Type-2 UDS RoutineControl routine.
-# Generic Ford Type-2 on-demand self-tests require extended session, so that is
-# the evidence-backed primary candidate. The live PCM accepts both 10 03 and
-# 10 01; default is retained only as a bounded fallback if the ECU explicitly
-# says the routine/subfunction is unavailable in extended session.
 SESSION_CANDIDATES = (
     ("extended", bytes.fromhex("10 03"), bytes.fromhex("50 03")),
     ("default", bytes.fromhex("10 01"), bytes.fromhex("50 01")),
 )
 
-# ISO 14229 / Ford NRC names. 0x89-0x93 are especially important here because
-# they expose environmental entry-condition failures instead of requiring us to
-# guess why KOER was rejected.
 NRC = {
     0x10: "generalReject",
     0x11: "serviceNotSupported",
@@ -98,12 +91,8 @@ CONDITION_NRCS = {
     0x92,
     0x93,
 }
-# These say the request itself is unsupported/invalid or would require a path
-# this tool intentionally will not take. Changing sessions does not justify
-# probing around them.
 TERMINAL_START_NRCS = {0x11, 0x12, 0x13, 0x24, 0x26, 0x31, 0x33, 0x35, 0x36, 0x37}
 
-# Standard OBD-II Mode 01 values used only as a read-only preflight.
 OBD_PIDS = {
     0x0C: "RPM",
     0x0D: "Speed",
@@ -271,11 +260,7 @@ def receive_final(
     overall_timeout: float = 30.0,
     p2_star_seconds: float = 6.0,
 ) -> bytes:
-    """Receive the final UDS response, honoring NRC 0x78 without resending.
-
-    The live PCM advertised P2*=5000 ms. The client allows a 1-second transport/host
-    margin; each 0x78 refreshes that bounded wait while an overall cap prevents an infinite wait.
-    """
+    """Receive final UDS response; 0x78 means wait without resending."""
     overall_deadline = time.monotonic() + overall_timeout
     pending_deadline: float | None = None
 
@@ -326,6 +311,13 @@ def exchange_busy_retry(
     max_busy_retries: int = 5,
     timeout: float = 30.0,
 ) -> bytes:
+    """Retry 0x21 only where an immediate bounded retry is appropriate.
+
+    KOER result polling deliberately calls this with max_busy_retries=0 because
+    live vehicle evidence shows 0x21 is the PCM saying the already-active KOER
+    routine is still busy. Hammering six result requests every poll adds noise
+    and does not make the routine finish faster.
+    """
     busy = 0
     while True:
         response = exchange(client, payload, log, label=label, timeout=timeout)
@@ -400,16 +392,43 @@ def log_type2_info(log: RunLog, info: Type2RoutineInfo, *, context: str) -> None
         log.write(f"{context}: unexpected extra response bytes={fmt(info.extra)}")
 
 
+def print_operator_actions(
+    log: RunLog,
+    *,
+    coolant_c: float | None = None,
+    runtime_s: float | None = None,
+) -> None:
+    """Show the driver actions Ford service material associates with KOER.
+
+    Not every Ford powertrain uses every input. These actions are intentionally
+    conservative and do not automate vehicle controls.
+    """
+    log.write("\n==================================================")
+    log.write("KOER IS ACTIVE - PERFORM THE DRIVER INPUTS ONCE NOW")
+    log.write("==================================================")
+    log.write("Keep the vehicle stopped in PARK with the parking brake set.")
+    log.write("1. Briefly press and release the BRAKE pedal.")
+    log.write("2. If safe, turn the steering wheel at least about 1/4 turn, then return toward center.")
+    log.write("3. If your car has an OD/transmission-control switch, cycle it once. If it does not, skip this.")
+    log.write("4. If the test is still busy after ~15 seconds, give the accelerator ONE brief, light-to-moderate press and release.")
+    log.write("   Do NOT hold the accelerator down and do NOT race the engine.")
+    log.write("")
+    log.write("Ford service material specifies KOER at normal operating temperature.")
+    if coolant_c is not None:
+        log.write(f"Current coolant reading before KOER was {coolant_c:.0f} C.")
+    if runtime_s is not None:
+        log.write(f"Engine runtime before KOER was {runtime_s:.0f} sec.")
+    log.write("If the temperature gauge is not yet in its normal range, leave the engine running and let it continue warming.")
+    log.write("No key foil yet. Do not turn the engine off. The script will keep checking for completion automatically.")
+    log.write("==================================================\n")
+
+
 def try_start_candidate(
     client: IsoTpClient,
     candidate: CandidateState,
     log: RunLog,
 ) -> tuple[str, Type2RoutineInfo | None]:
-    """Try one evidence-backed KOER candidate.
-
-    Returns one of: accepted, completed, aborted, condition, wrong-session,
-    terminal. No alternate RID or service is ever generated here.
-    """
+    """Try one evidence-backed KOER candidate."""
     candidate.attempts += 1
     log.write(f"\n=== CANDIDATE: {candidate.name} session / RID 0x{KOER_RID:04X} ===")
 
@@ -460,8 +479,6 @@ def try_start_candidate(
         return "condition", None
     if code in TERMINAL_START_NRCS or code is None:
         return "terminal", None
-
-    # Never improvise around an NRC we did not explicitly classify.
     return "terminal", None
 
 
@@ -469,12 +486,22 @@ def poll_koer_results(
     client: IsoTpClient,
     log: RunLog,
     *,
-    max_seconds: float = 180.0,
-    poll_interval: float = 1.0,
+    max_seconds: float = 300.0,
+    poll_interval: float = 2.5,
 ) -> bool:
-    """Poll only RID 0x0282 until a valid Ford Type-2 completion is returned."""
+    """Poll RID 0x0282 until Ford Type-2 completion is explicit.
+
+    Live 2013 Focus evidence: once 31 01 02 82 returned 71 01 02 82 22,
+    immediate result requests returned 7F 31 21 repeatedly. That is not a
+    failed start; it is busyRepeatRequest while the accepted KOER routine is
+    still active. Send only one result request per poll interval.
+    """
     log.write("\nPolling the SAME KOER routine for Ford Type-2 results.")
+    log.write("NRC 0x21 while polling means the PCM is busy with the already-active KOER test; it is not a failed start.")
     deadline = time.monotonic() + max_seconds
+    started = time.monotonic()
+    busy_count = 0
+    last_reminder = started
 
     while time.monotonic() < deadline:
         try:
@@ -483,10 +510,11 @@ def poll_koer_results(
                 KOER_RESULTS,
                 log,
                 label="request KOER RID 0x0282 results",
+                max_busy_retries=0,
                 timeout=30.0,
             )
         except TimeoutError as error:
-            log.write(f"KOER result wait timed out: {error}; retrying same result request")
+            log.write(f"KOER result wait timed out: {error}; waiting before the next result request")
             time.sleep(poll_interval)
             continue
 
@@ -506,11 +534,25 @@ def poll_koer_results(
                 log.write("Ford Type-2 RoutineInfo reports ABORTED (0x21).")
                 return False
             if info.status == "active":
+                log.write(f"KOER still active; waiting {poll_interval:.1f} sec before checking again.")
                 time.sleep(poll_interval)
                 continue
 
         code = nrc_of(response)
-        if code in (0x21, 0x22) or code in CONDITION_NRCS:
+        if code == 0x21:
+            busy_count += 1
+            elapsed = time.monotonic() - started
+            log.write(
+                f"PCM busy with KOER (busyRepeatRequest #{busy_count}, elapsed {elapsed:.0f}s). "
+                f"Waiting {poll_interval:.1f} sec before ONE new result request."
+            )
+            if time.monotonic() - last_reminder >= 30.0:
+                log.write("REMINDER: keep engine running; perform the brake/steering driver inputs once; let engine reach normal operating temperature.")
+                last_reminder = time.monotonic()
+            time.sleep(poll_interval)
+            continue
+
+        if code == 0x22 or code in CONDITION_NRCS:
             log.write(f"KOER result not ready/condition changed: {describe_nrc(response)}")
             time.sleep(poll_interval)
             continue
@@ -534,7 +576,7 @@ def poll_koer_results(
 def foil_wizard(log: RunLog) -> None:
     log.write("\n**************************************************")
     log.write("KOER COMPLETE")
-    log.write("LEAVE THE ENGINE RUNNING")
+    log.write("LEAVE ENGINE RUNNING")
     log.write("ACTIVE CAN TRANSMISSIONS HAVE STOPPED")
     log.write("**************************************************")
     log.write("")
@@ -573,10 +615,11 @@ def dry_run() -> int:
     print("  0x21 = Type 2 / aborted")
     print("  0x20 = Type 2 / completed")
     print("\nAfter start is active:")
-    print("  poll 31 03 02 82 only")
+    print("  show Ford KOER driver-input guidance")
+    print("  poll 31 03 02 82 only, one request per poll interval")
+    print("  NRC 0x21 busyRepeatRequest during polling = PCM busy; wait and try later")
     print("  completed results must contain RoutineInfo 0x20 plus Ford's 3-byte On-Demand DTC field")
     print("  NRC 0x78 is waited out without resending start")
-    print("  no empty-status/repeated-positive response is ever treated as completion")
     print("\nKnown failed requests are NOT retransmitted:")
     print("  31 01 02 02")
     print("  31 02 00")
@@ -597,7 +640,8 @@ def run(args: argparse.Namespace) -> int:
     print("A/C AND ACCESSORIES OFF")
     print("DRIVER'S DOOR CLOSED")
     print("NO FOIL YET")
-    print("\nThis tool only invokes Ford KOER RID 0x0282. It does not scan arbitrary ECU routines.")
+    print("\nFord service material specifies normal operating temperature for KOER.")
+    print("This tool only invokes Ford KOER RID 0x0282. It does not scan arbitrary ECU routines.")
     confirm = input("\nType KOER to begin: ").strip().upper()
     if confirm != "KOER":
         print("Cancelled. Nothing transmitted.")
@@ -626,7 +670,6 @@ def run(args: argparse.Namespace) -> int:
                 cycle += 1
                 log.write(f"\n################ KOER CYCLE {cycle} ################")
 
-                # J1979 preflight is deliberately performed in default session.
                 default_response = exchange_busy_retry(
                     client,
                     bytes.fromhex("10 01"),
@@ -643,14 +686,16 @@ def run(args: argparse.Namespace) -> int:
                 coolant = values.get(0x05)
                 runtime = values.get(0x1F)
                 if coolant is not None:
-                    log.write(f"NOTE: coolant={coolant:.0f} C; no unverified KOER threshold is enforced.")
+                    log.write(f"NOTE: coolant={coolant:.0f} C; no invented numeric KOER threshold is enforced.")
                 if runtime is not None:
-                    log.write(f"NOTE: engine runtime={runtime:.0f} sec; no unverified minimum is enforced.")
+                    log.write(f"NOTE: engine runtime={runtime:.0f} sec; no invented numeric minimum is enforced.")
 
                 candidate = candidates[candidate_index]
                 outcome, _start_info = try_start_candidate(client, candidate, log)
 
                 if outcome in ("accepted", "completed"):
+                    if outcome == "accepted":
+                        print_operator_actions(log, coolant_c=coolant, runtime_s=runtime)
                     completed = poll_koer_results(
                         client,
                         log,
@@ -736,11 +781,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="maximum entry-condition retry cycles; 0 means retry until success, terminal response, or Ctrl-C",
     )
     parser.add_argument("--retry-delay", type=float, default=3.0, help="seconds between entry-condition retries")
-    parser.add_argument("--poll-interval", type=float, default=1.0, help="seconds between RID 0x0282 result requests")
+    parser.add_argument(
+        "--poll-interval",
+        type=float,
+        default=2.5,
+        help="seconds between KOER result requests; live 0x21 busy replies are not hammered with immediate retries",
+    )
     parser.add_argument(
         "--result-timeout",
         type=float,
-        default=180.0,
+        default=300.0,
         help="seconds to allow KOER to remain active while results are polled",
     )
     parser.add_argument(
